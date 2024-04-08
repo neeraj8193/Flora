@@ -42,32 +42,8 @@
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="/static/img/logo.png" alt=""> -->
-        <img src="/static/img/floraWebsiteLogo.jpg" alt="">
-      </a>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#menu">Menu</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav><!-- .navbar -->
-
-      <a class="btn-book-a-table" href="#book-a-table">Take a Subscription</a>
-      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-
-    </div>
-  </header><!-- End Header -->
+  {% include 'components/header.html' %}
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero d-flex align-items-center section-bg">
@@ -93,17 +69,17 @@
   </section>
   <!-- End Hero Section -->
 
+    
   <main id="main">
-
-    <!-- ======= About Section ======= -->
+    
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
-
+  
         <div class="section-header">
           <h2>About Us</h2>
           <p>Learn More <span>About Us</span></p>
         </div>
-
+  
         <div class="row gy-4">
           <div class="col-lg-7 position-relative about-img" style="background-image: url(/static/img/about1.jpg) ;"
             data-aos="fade-up" data-aos-delay="150">
@@ -135,19 +111,17 @@
                 and air quality in office spaces.Enable individuals to effortlessly adorn their homes with a variety of
                 plant pots. Cater to different preferences and sizes, from small desk plants to larger decorative pots.
               </p>
-
+  
               <div class="position-relative mt-4">
                 <img src="/static/img/about2.jpg" class="img-fluid" alt="">
-
+  
               </div>
             </div>
           </div>
         </div>
-
+  
       </div>
-    </section><!-- End About Section -->
-
-
+    </section>
     <!-- ======= Menu Section ======= -->
     <section id="menu" class="menu">
       <div class="container" data-aos="fade-up">
@@ -492,146 +466,9 @@
       </div>
     </section><!-- End Gallery Section -->
 
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-header">
-          <h2>Contact</h2>
-          <p><span>For Any Help Contact us</span></p>
-        </div>
-
-        <div class="mb-3">
-          <iframe style="border:0; width: 100%; height: 350px;"
-            src="https://www.google.com/maps/dir//Lower+Ground+Floor,+Raja+Ram+Kumar+Plaza,+opp.+Tej+Kumar+Plaza,+behind+Motimahal+Restaurant,+Sushanpura,+Hazratganj,+Lucknow,+Uttar+Pradesh+226001/@26.846782,80.8622571,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x399bfd07c3c15643:0x867bb0de72c4c460!2m2!1d80.9446586!2d26.8468059?entry=ttu"
-            frameborder="0" allowfullscreen></iframe>
-        </div><!-- End Google Maps -->
-
-        <div class="row gy-4">
-
-          <div class="col-md-6">
-            <div class="info-item  d-flex align-items-center">
-              <i class="icon bi bi-map flex-shrink-0"></i>
-              <div>
-                <h3>Our Address</h3>
-                <p>Gomtinagar , Lucknow </p>
-              </div>
-            </div>
-          </div><!-- End Info Item -->
-
-          <div class="col-md-6">
-            <div class="info-item d-flex align-items-center">
-              <i class="icon bi bi-envelope flex-shrink-0"></i>
-              <div>
-                <h3>Our Email</h3>
-                <p>Flora@gmail.com</p>
-              </div>
-            </div>
-          </div><!-- End Info Item -->
-
-          <div class="col-md-6">
-            <div class="info-item  d-flex align-items-center">
-              <i class="icon bi bi-telephone flex-shrink-0"></i>
-              <div>
-                <h3>Call Us</h3>
-                <p>+1 7789 55499 11</p>
-              </div>
-            </div>
-          </div><!-- End Info Item -->
-
-          <div class="col-md-6">
-            <div class="info-item  d-flex align-items-center">
-              <i class="icon bi bi-share flex-shrink-0"></i>
-              <div>
-                <h3>Opening Hours</h3>
-                <div><strong>Mon to Sat - </strong> 10AM - 7PM;
-                  <strong>Sunday - </strong> Closed
-                </div>
-              </div>
-            </div>
-          </div><!-- End Info Item -->
-
-        </div>
-
-        <form action="forms/contact.php" method="post" role="form" class="php-email-form p-3 p-md-4">
-          <div class="row">
-            <div class="col-xl-6 form-group">
-              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-            </div>
-            <div class="col-xl-6 form-group">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-          </div>
-          <div class="my-3">
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your message has been sent. Thank you!</div>
-          </div>
-          <div class="text-center"><button type="submit">Send Message</button></div>
-        </form><!--End Contact Form -->
-
-      </div>
-    </section><!-- End Contact Section -->
-
   </main><!-- End #main -->
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-
-    <div class="container">
-      <div class="row gy-3">
-        <div class="col-lg-3 col-md-6 d-flex">
-          <i class="bi bi-geo-alt icon"></i>
-          <div>
-            <h4>Address</h4>
-            <p>
-              Gomtinagar , <br>
-              Lucknow <br>
-            </p>
-          </div>
-
-        </div>
-
-        <div class="col-lg-3 col-md-6 footer-links d-flex">
-          <i class="bi bi-telephone icon"></i>
-          <div>
-            <h4>Reservations</h4>
-            <p>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> flora@gmail.com<br>
-            </p>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 footer-links d-flex">
-          <i class="bi bi-clock icon"></i>
-          <div>
-            <h4>Opening Hours</h4>
-            <p>
-              <strong>Mon-Sat: 10AM</strong> to 7PM<br>
-              Sunday: Closed
-            </p>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 footer-links">
-          <h4>Follow Us</h4>
-          <div class="social-links d-flex">
-            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-  </footer><!-- End Footer -->
-  <!-- End Footer -->
+  {% include 'components/footer.html' %}
 
   <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
@@ -645,7 +482,6 @@
   <script src="/static/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="/static/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="/static/vendor/php-email-form/validate.js"></script>
-
   <!-- Template Main JS File -->
   <script src="/static/js/main.js"></script>
 
