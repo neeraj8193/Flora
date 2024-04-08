@@ -35,6 +35,7 @@ urlpatterns = [
     path('listing', TemplateView.as_view(template_name='listing.html'), name='listing'),
     path('customer/login', TemplateView.as_view(template_name='customerLogin.html'), name='customer_login'),
     path('customer/register', TemplateView.as_view(template_name='customerRegister.html'), name='customer_register'),
+    path('feedback', TemplateView.as_view(template_name='feedback.html'), name='feedback'),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <link href="/static/css/feed.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto Slab', serif;
+            background: #dae2fb;
+            background: -webkit-linear-gradient(to right, #d6aaaa, #dae2f8);
+            background: linear-gradient(to right, #d6aaaa, #dae2f8);
+        }
+
+        .h1-tag {
+            text-align: center;
+            margin-top: 4%;
+        }
+
+        .form-content-section {
+            width: 50%;
+            margin-top: 3%;
+            margin-left: 25%;
+
+        }
+
+        @media screen and (max-width:600px) {
+            .forn-content-section {
+                width: 100%;
+                margin-top: 10%;
+                margin-left: 0;
+            }
+
+            .form-group {
+                margin-left: 20px;
+                margin-right: 20px;
+
+            }
+
+            .btn-primary {
+                margin-left: 20px;
+            }
+
+            .myclass {
+                border: radius 20px;
+                ;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .form-group {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            .btn-primary {
+                margin-left: 10px;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            .form-group {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+
+            .btn-primary {
+                margin-left: 20px;
+            }
+        }
+
+        .myclass {
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="form-section">
+        <h1 class="h1-tag">
+            Your feedback is important
+        </h1>
+        <form class="form-content-section">
+            <div class="form-group">
+                <label for="exampleInputText">Name</label>
+                <input type="text" class="form-control" id="exampleInputtext" placeholder="Enter your name">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email </label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Enter Your email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                    else.</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Share your opinion with us </label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write here"></textarea>
+            </div>
+       
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </section>
+
+    <script src="/static/js/feed.js"></script>
+</body>
+
+</html>
