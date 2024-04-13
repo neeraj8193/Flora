@@ -36,6 +36,7 @@
   <link href="/static/css/main.css" rel="stylesheet">
 
 
+
   {% block css %}
   {% endblock %}
 
@@ -63,10 +64,11 @@
   <script src="/static/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="/static/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="/static/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="/static/vendor/php-email-form/validate.js"></script>
+  
 
   <!-- Template Main JS File -->
   <script src="/static/js/main.js"></script>
+  {% include 'components/message.html' %}
 
 
   {% block js %}

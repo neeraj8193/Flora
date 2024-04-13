@@ -24,6 +24,7 @@ from shop.views import contact_details
 from shop.views import index
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     
