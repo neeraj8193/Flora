@@ -67,6 +67,10 @@
         .form-label {
             font-weight: 800 !important;
         }
+        .container form a img{
+            width:12px;
+            height: 8vh;
+        }
 
         @media only screen and (max-width: 600px) {
             form {
@@ -77,14 +81,21 @@
 </head>
 
 <body>
+    
     <div class="container-fluid">
-        <form class="mx-auto">
+        <a href="#" class="d-flex justify-content-center align-items-center mb-3 mt-2">
+            <img src="/static/img/floraWebsiteLogo.jpg" alt="img" width="130">
+        </a>
+        
+        <form class="mx-auto mt-2">
+
             <h4 class="text-center">Login</h4>
-            <div class="mb-3 mt-5">
+
+            <div class="mb-3 mt-3">
                 <label for="exampleInputEmail1" class="form-label">User Name</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
-            <div class="mb-3">
+            <div class="mb-2">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
                 <input type="password" class="form-control" id="exampleInputPassword1">
                 <div id="emailHelp" class="form-text mt-3"><a href="#">Forget password ?</a></div>
