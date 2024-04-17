@@ -1,7 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User 
     
 
 class Contact(models.Model):
+    user = models.ForeignKey(User, on_delete = models.SET_NULL , null = True , blank = True)
     name = models.CharField(max_length = 20)
     email = models.EmailField()
     phone = models.CharField(max_length = 20)
@@ -10,28 +12,4 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name
-    
-
-class Category(models.Model):
-    title=models.CharField(max_length=50)
-    image=models.ImageField(upload_to='category')
-    description = models.TextField()
-    created_at = models.DateTimeField( auto_now_add=True)
-    def __str__(self):
-        return self.title
-
-class type_of_flower_pots(models.Model):
-    title = models.CharField(max_length = 20)
-    image = models.ImageField(upload_to='outdoor_plants')
-  
-
-    
-    
-
-    
-    
-    
-    
-
-
 

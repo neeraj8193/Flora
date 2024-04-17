@@ -65,21 +65,20 @@
         <div class="col col-sm-6 col-lg-7 col-xl-6">
 
             <div class="text-center mb-4">
-                <small>Already have an account? <a href="CustomerLoginPage.html" class="fw-bold ms-1">Login</a></small>
-            </div>
-
-            <div class="text-center mb-4">
                 <h3 class="fw-bold">Sign Up</h3>
             </div>
 
-            <form action="#">
+            <form action="#" method="post">
+
+                {% csrf_token %}
+
                 <div class="d-flex gap-2">
 
                     <div class="input-group mb-3">
                         <span class="input-group-text input-design">
                             <i class='bx bx-user'></i>
                         </span>
-                        <input type="text" class="form-control form-control-lg fs-6 input-design"
+                        <input type="text" name="firstname"  class="form-control form-control-lg fs-6 input-design"
                             placeholder="Firstname">
                     </div>
 
@@ -87,7 +86,7 @@
                         <span class="input-group-text input-design">
                             <i class='bx bx-user'></i>
                         </span>
-                        <input type="text" class="form-control form-control-lg fs-6 input-design"
+                        <input type="text" name="lastname" class="form-control form-control-lg fs-6 input-design"
                             placeholder="Lastname">
                     </div>
 
@@ -97,26 +96,31 @@
                     <span class="input-group-text input-design">
                         <i class='bx bx-envelope'></i>
                     </span>
-                    <input type="email" class="form-control form-control-lg fs-6 input-design" placeholder="Email">
+                    <input type="email" name="email" class="form-control form-control-lg fs-6 input-design" placeholder="Email">
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text input-design">
                         <i class='bx bx-lock-alt'></i>
                     </span>
-                    <input type="password" class=" form-control form-control-lg fs-6 input-design"
+                    <input type="password" name="pass1" class=" form-control form-control-lg fs-6 input-design"
                         placeholder="Password">
                 </div>
 
-                <button class="btn btn-secondary btn-lg w-100 mb-2">Register</button>
-
-                <div class="input-group mb-3 d-flex">
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="formCheck">
-                        <label for="formCheck" class="form-check-label"><small>Remember
-                                Me</small></label>
-                    </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text input-design">
+                        <i class='bx bx-lock-alt'></i>
+                    </span>
+                    <input type="password" name="pass2" class=" form-control form-control-lg fs-6 input-design"
+                        placeholder="Confirm Password">
                 </div>
+
+                <button type="submit" class="btn btn-secondary btn-lg w-100 mb-2">Register</button>
+
+                <div class="text-center mb-4">
+                    <small>Already have an account? <a href="/Login" class="fw-bold ms-1">Login</a></small>
+                </div>
+    
             </form>
         </div>
 

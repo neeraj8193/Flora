@@ -82,7 +82,7 @@
     <div class="row vh-100 g-0">
 
         <div class="col-lg-6 position-relative d-none d-lg-block">
-            <div class="bg-holder" style="" ></div>
+            <div class="bg-holder"></div>
         </div>
 
 
@@ -111,19 +111,20 @@
                         <div class="divider-content-center">or</div>
                     </div>
 
-                    <form action="#">
+                    <form action="#" method="post">
+                        {% csrf_token %}
                         <div class="input-group mb-3">
                             <span class="input-group-text">
-                                <i class='bx bx-user'></i>
+                                <i class='bx bx-envelope'></i>
                             </span>
-                            <input type="text" class="form-control form-control-lg fs-6" placeholder="Username">
+                            <input type="email" class="form-control form-control-lg fs-6" name="email" placeholder="Email">
                         </div>
 
                         <div class="input-group mb-3">
                             <span class="input-group-text">
                                 <i class='bx bx-lock-alt'></i>
                             </span>
-                            <input type="password" class=" form-control form-control-lg fs-6" placeholder="Password">
+                            <input type="password" class=" form-control form-control-lg fs-6" name="password" placeholder="Password">
                         </div>
 
                         <div class="input-group mb-3 d-flex justify-content-between">
@@ -141,7 +142,7 @@
                     </form>
 
                     <div class="text-center">
-                        <small>Don't have an account? <a href="#" class="fw-bold">Sign Up</a></small>
+                        <small>Don't have an account? <a href="/SignUp" class="fw-bold">Sign Up</a></small>
                     </div>
 
                 </div>
