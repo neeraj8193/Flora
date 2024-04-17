@@ -11,14 +11,15 @@
         <ul>
           <li><a href="{% url 'home' %}">Home</a></li>
           <li><a href="{% url 'admin:index' %}">Admin</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#menu">Menu</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'menu' %}">Menu</a></li>
           <li><a href="#gallery">Gallery</a></li>
           <li><a href="{% url 'contact' %}">Contact</a></li>
         </ul>
       </nav><!-- .navbar -->
 
       <a class="btn-book-a-table" href="#book-a-table">Take a Subscription</a>
+      <a class="btn btn-primary" href="#">LogOut</a>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
