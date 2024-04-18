@@ -32,14 +32,18 @@ urlpatterns = [
     path('contact', contact_details , name='contact'),
     path('menu', menu_details , name='menu'),
     path('about', about_details , name='about'),
+
+
     path('login/customer', customer_login_view, name='clogin'),
     path('register/customer', customer_register_view, name='cregister'),
     path('logout/', logout_view, name='logout'),
-
     path('vendor/login', vendor_login_view, name='vlogin'),
     path('vendor/register', vendor_register_view, name='vregister'),
 
+
     path('listing', TemplateView.as_view(template_name='listing.html'), name='listing'),
+
+    
     path('feedback', TemplateView.as_view(template_name='feedback.html'), name='feedback'),
 ]
 

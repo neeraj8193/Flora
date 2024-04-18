@@ -48,4 +48,6 @@ def vendor_register_view(request):
 def logout_view(request):
     logout(request)
     messages.success(request, "logout successful")
-    return redirect('home')
+    return redirect('clogin')
+
+    
