@@ -6,7 +6,7 @@
 
 <script>
     Toastify({
-  text: "This is a toast",
+  text: {{message}},
   duration: 3000,
   close: true,
   gravity: "bottom", // `top` or `bottom`
@@ -19,7 +19,7 @@
     x:10,
     y:10,
   }
-}).showToast();
+).showToast();
 </script>
 {% endfor %}
 {% endif %}

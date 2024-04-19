@@ -1,241 +1,151 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'layout/base.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feedback</title>
+{% block content %}
+<section id="form-section">
 
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto Slab', serif;
-            background: #dae2fb;
-            background: -webkit-linear-gradient(to right, #d6aaaa, #dcdfe8);
-            background: linear-gradient(to right, #e0d9d9, #dae2f8);
-        }
-
-        .h1-tag {
-            text-align: center;
-            margin-top: 4%;
-        }
-
-        .form-content-section {
-            width: 50%;
-            margin-top: 3%;
-            margin-left: 25%;
-
-        }
-
-        @media screen and (max-width:600px) {
-            .forn-content-section {
-                width: 100%;
-                margin-top: 10%;
-                margin-left: 0;
-            }
-
-            .form-group {
-                margin-left: 20px;
-                margin-right: 20px;
-
-            }
-
-            .btn-primary {
-                margin-left: 20px;
-            }
-
-            .myclass {
-                border: radius 20px;
-                ;
-            }
-        }
-
-        @media screen and (max-width: 600px) {
-            .form-group {
-                margin-left: 10px;
-                margin-right: 10px;
-            }
-
-            .btn-primary {
-                margin-left: 10px;
-            }
-        }
-
-        @media screen and (max-width: 800px) {
-            .form-group {
-                margin-left: 20px;
-                margin-right: 20px;
-            }
-
-            .btn-primary {
-                margin-left: 20px;
-            }
-        }
-
-        .myclass {
-            border-radius: 20px;
-        }
-
-        :root {
-            --yellow: #FFBD13;
-            --blue: #4383FF;
-            --blue-d-1: #3278FF;
-            --light: #F5F5F5;
-            --grey: #AAA;
-            --white: #FFF;
-            --shadow: 8px 8px 30px rgba(0, 0, 0, .05);
-        }
-
-        .wrapper {
-            background: var(--white);
-            padding: 2rem;
-            max-width: 576px;
-            width: 100%;
-            border-radius: .75rem;
-            box-shadow: var(--shadow);
-            text-align: center;
-        }
-
-        .rating {
-            display: flex;
-            
-            grid-gap: .5rem;
-            font-size: 2rem;
-            color: var(--yellow);
-            margin-bottom: 2rem;
-        }
-
-        .rating .star {
-            cursor: pointer;
-        }
-
-        .rating .star.active {
-            opacity: 0;
-            animation: animate .5s calc(var(--i) * .1s) ease-in-out forwards;
-        }
-
-        @keyframes animate {
-            0% {
-                opacity: 0;
-                transform: scale(1);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scale(1.2);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-7 mx-auto">
+                <h1 class="h1-tag">
+                    Your feedback is important
+                </h1>
 
 
-        .rating .star:hover {
-            transform: scale(1.1);
-        }
+                <form class="form-content-section" method="post" action="#">
+                    {% csrf_token %}
+                    <div class="form-group mb-3">
+                        <label for="exampleInputText">Name</label>
+                        <input type="text" class="form-control" id="exampleInputtext" placeholder="Enter your name"
+                            name="name">
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="exampleInputEmail1">Email </label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Enter Your email" name="email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small>
+                    </div>
 
 
-        .btn-group {
-            display: flex;
-            grid-gap: .5rem;
-            align-items: center;
-        }
 
-        .btn-group .btn {
-            padding: .75rem 1rem;
-            border-radius: .5rem;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            font-size: .875rem;
-            font-weight: 500;
-        }
+                    <div class="rating">
+                        <input class="star star-5" id="star-5" type="radio" value="5" name="star" />
 
-        .btn-group .btn.submit {
-            background: var(--blue);
-            color: var(--white);
-        }
+                        <label class="star star-5" for="star-5"></label>
 
-        .btn-group .btn.submit:hover {
-            background: var(--blue-d-1);
-        }
+                        <input class="star star-4" id="star-4" type="radio" value="4" name="star" />
 
-        .btn-group .btn.cancel {
-            background: var(--white);
-            color: var(--blue);
-        }
+                        <label class="star star-4" for="star-4"></label>
 
-        .btn-group .btn.cancel:hover {
-            background: var(--light);
-        }
-    </style>
-</head>
+                        <input class="star star-3" id="star-3" type="radio" value="3" name="star" />
 
-<body>
-    <section id="form-section">
+                        <label class="star star-3" for="star-3"></label>
 
-        <h1 class="h1-tag">
-            Your feedback is important
-        </h1>
+                        <input class="star star-2" id="star-2" type="radio" value="2" name="star" />
+
+                        <label class="star star-2" for="star-2"></label>
+
+                        <input class="star star-1" id="star-1" type="radio" value="1" name="star" />
+
+                        <label class="star star-1" for="star-1"></label>
+                    </div>
 
 
-        <form class="form-content-section">
-            <div class="form-group">
-                <label for="exampleInputText">Name</label>
-                <input type="text" class="form-control" id="exampleInputtext" placeholder="Enter your name">
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Share your opinion with us </label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                            placeholder="Write here" name="message"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn submit">Submit</button>
+                    <button class="btn cancel">Cancel</button>
+
+                </form>
             </div>
+        </div>
+    </div>
+</section>
 
-            <div class="form-group mb-4">
-                <label for="exampleInputEmail1">Email </label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Enter Your email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                    else.</small>
-            </div>
+<script src="/static/js/feed.js"></script>
+{% endblock content %}
+
+{% block css %}
+<style>
+    div.stars {
+
+        width: 270px;
+
+        display: inline-block;
+
+    }
+
+    .mt-200 {
+        margin-top: 200px;
+    }
+
+    input.star {
+        display: none;
+    }
 
 
 
-            <div class="rating">
-                <input type="number" name="rating" hidden>
-                <i class='bx bx-star star' style="--i: 0;"></i>
-                <i class='bx bx-star star' style="--i: 1;"></i>
-                <i class='bx bx-star star' style="--i: 2;"></i>
-                <i class='bx bx-star star' style="--i: 3;"></i>
-                <i class='bx bx-star star' style="--i: 4;"></i>
-            </div>
+    label.star {
+
+        float: right;
+
+        padding: 10px;
+
+        font-size: 36px;
+
+        color: #4A148C;
+
+        transition: all .2s;
+
+    }
 
 
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Share your opinion with us </label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                    placeholder="Write here"></textarea>
-            </div>
 
-            <button type="submit" class="btn submit">Submit</button>
-            <button class="btn cancel">Cancel</button>
+    input.star:checked~label.star:before {
 
-        </form>
-    </section>
+        content: '\f005';
 
-    <script src="/static/js/feed.js"></script>
-</body>
+        color: #FD4;
 
-</html>
+        transition: all .25s;
+
+    }
+
+
+    input.star-5:checked~label.star:before {
+
+        color: #FE7;
+
+        text-shadow: 0 0 20px #952;
+
+    }
+
+
+
+    input.star-1:checked~label.star:before {
+        color: #F62;
+    }
+
+
+
+    label.star:hover {
+        transform: rotate(-15deg) scale(1.3);
+    }
+
+
+
+    label.star:before {
+
+        content: '\f006';
+
+        font-family: FontAwesome;
+
+    }
+</style>
+{% endblock %}

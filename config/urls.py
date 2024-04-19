@@ -20,7 +20,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
-from shop.views import contact_details,menu_details,about_details
+from shop.views import contact_details,menu_details,about_details , feedback_details
 from shop.views import index
 from accounts.views import *
 
@@ -44,7 +44,7 @@ urlpatterns = [
     path('listing', TemplateView.as_view(template_name='listing.html'), name='listing'),
 
     
-    path('feedback', TemplateView.as_view(template_name='feedback.html'), name='feedback'),
+    path('feedback', feedback_details, name='feedback'),
 ]
 
 if settings.DEBUG:
