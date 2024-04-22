@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'shop',
     "crispy_forms",
     "crispy_bootstrap5",
+    "import_export",
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -87,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'flora_contact',
         'USER': 'root',
-        'PASSWORD': '9199252671',
+        'PASSWORD': 'ashuabbas@123',
         'HOST': 'localhost',
         'PORT': '3306',
     }

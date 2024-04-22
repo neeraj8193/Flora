@@ -11,11 +11,9 @@ class Contact(models.Model):
     message =  models.TextField()
     Created_at = models.DateTimeField(auto_now_add = True)
  
-
-
-
     def __str__(self):
         return self.name
+
 
 class Feedback(models.Model):
     name = models.CharField(max_length = 20)
@@ -33,19 +31,21 @@ class FlowersOption(models.Model):
         ('winter','winter'),
         ('spring','spring'),
         ('autumn','autumn'),
+        ('All','All'),
     )
+
     maintainance_type = (
         ('low','low'),
         ('medium','medium'),
         ('high','high'),
     )
+
     name = models.CharField(max_length = 20)
-    price = models.FloatField()
     image = models.ImageField(upload_to='flowers/')
     description = models.TextField()
     season_type= models.CharField(max_length=20,choices=season_type)
     maintainance_type = models.CharField(max_length=20,choices=maintainance_type)
-    
+    price = models.FloatField()
     
     def __str__(self):
         return self.name
@@ -62,7 +62,8 @@ class Subscription(models.Model):
     next_payment_date = models.DateField()
     def __str__(self):
         return self.user.username
-    
+
+
 class SelectedFlowers(models.Model):
     user = models.ForeignKey(User, on_delete = models.SET_NULL , null = True , blank = True)
     quantity = models.IntegerField()
@@ -70,5 +71,6 @@ class SelectedFlowers(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     is_payment_done = models.BooleanField(default=False)
+    
     def __str__(self):
         return self.user.username

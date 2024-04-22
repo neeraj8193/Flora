@@ -14,6 +14,9 @@ def menu_details(request):
         'flowers':FlowersOption.objects.all(),
     })
 
+def subscription_details(request):
+    return render(request,'subscription.html')
+
 def contact_details(request):
     if request.method == 'POST' :
         name = request.POST.get('name')
@@ -46,3 +49,4 @@ def feedback_details(request):
         else :
             messages.error(request,"Please fill all the fields correctly!")
     return render(request,'feedback.html')
+
