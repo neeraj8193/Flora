@@ -1,15 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User 
     
-
 class Contact(models.Model):
-
-    user = models.ForeignKey(User, on_delete = models.SET_NULL , null = True , blank = True)
+    user = models.ForeignKey(User, on_delete = models.CASCADE , null = True , blank = True)
     name = models.CharField(max_length = 20)
     email = models.EmailField()
     phone = models.CharField(max_length = 20)
     message =  models.TextField()
-    Created_at = models.DateTimeField(auto_now_add = True)
+    created_at = models.DateTimeField(auto_now_add = True)
  
     def __str__(self):
         return self.name
@@ -50,27 +48,54 @@ class FlowersOption(models.Model):
     def __str__(self):
         return self.name
 
-
-class Subscription(models.Model):
-    user= models.ForeignKey(User, on_delete = models.SET_NULL , null = True , blank = True)
-    price = models.FloatField()
-    start_date = models.DateField()
-    paymeent_type = models.CharField(max_length=20)
-    is_payment_done = models.BooleanField(default=False)
-    vendor = models.CharField(max_length=20)
-    subscription_type = models.CharField(max_length=20)
-    next_payment_date = models.DateField()
-    def __str__(self):
-        return self.user.username
-
-
-class SelectedFlowers(models.Model):
-    user = models.ForeignKey(User, on_delete = models.SET_NULL , null = True , blank = True)
-    quantity = models.IntegerField()
-    price = models.FloatField()
-    start_date = models.DateField()
-    end_date = models.DateField()
-    is_payment_done = models.BooleanField(default=False)
+class Address(models.Model):
+    user = models.ForeignKey(User, on_delete = models.CASCADE , null = True , blank = True)
+    address_line_1 = models.CharField(max_length = 50)
+    address_line_2 = models.CharField(max_length = 50, blank = True, null = True)
+    landmark = models.CharField(max_length = 20, blank = True, null = True)
+    city = models.CharField(max_length = 20)
+    state = models.CharField(max_length = 20)
+    pincode = models.CharField(max_length = 20)
+    created_at = models.DateTimeField(auto_now_add = True)
     
     def __str__(self):
         return self.user.username
+
+class Subscription(models.Model):
+    sub_type_choices = (
+        (0,'monthly'),
+        (1,'yearly'),
+    )
+    user = models.ForeignKey(User, on_delete = models.CASCADE , null = True , blank = True)
+    start_date = models.DateField(auto_now_add = True)
+    expiry_date = models.DateField()
+    price = models.FloatField(blank=True,null=True)
+    sub_type = models.IntegerField(choices=sub_type_choices)
+    is_payment_done = models.BooleanField(default=False)
+    address = models.ForeignKey(Address, on_delete = models.CASCADE , null = True , blank = True)
+    status = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add = True)
+    transaction_id = models.CharField(max_length = 255, blank = True, null = True)
+
+    def __str__(self):
+        return self.user.username
+
+class SelectedFlowers(models.Model):
+    user = models.ForeignKey(User, on_delete = models.CASCADE , null = True , blank = True)
+    flower = models.ForeignKey(FlowersOption, on_delete = models.CASCADE , null = True , blank = True)
+    subscription = models.ForeignKey(Subscription, on_delete = models.CASCADE , null = True , blank = True)
+    quantity = models.IntegerField()
+    
+    def __str__(self):
+        return self.user.username
+
+class Vendor(models.Model):
+    user = models.ForeignKey(User, on_delete = models.CASCADE , null = True , blank = True)
+    name = models.CharField(max_length = 20)
+    email = models.EmailField()
+    phone = models.CharField(max_length = 20)
+    address = models.ForeignKey(Address, on_delete = models.CASCADE , null = True , blank = True)
+    created_at = models.DateTimeField(auto_now_add = True)
+    
+    def __str__(self):
+        return self.name

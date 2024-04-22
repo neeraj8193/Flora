@@ -1,0 +1,66 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block Flora %}
+Create new subscription
+{% endblock %}
+
+{% block content %}
+
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-lg-7 text-center text-lg-start">
+            <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Vertically centered hero sign-up form</h1>
+            <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each
+                required form group has a validation state that can be triggered by attempting to submit the form
+                without completing it.</p>
+        </div>
+        <div class="col-md-10 mx-auto col-lg-5">
+            <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" method="post">
+                {% csrf_token %}
+                <div class="my-3">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sub_type" id="sub_type_y" value="1" checked/>
+                        <label class="form-check-label" for="sub_type_y">Yearly</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sub_type" id="sub_type_m" value="0" />
+                        <label class="form-check-label" for="sub_type_m">Monthly</label>
+                    </div>
+                </div>
+               
+                <div class="form-floating mb-3">
+
+                    <input type="date" class="form-control" id="date" placeholder="start date" name="date" >
+                    <label for="floatingPassword">Starting date of subscription</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="floatingSelect" aria-label="Select a flower" name="address">
+                        <option selected>Choose your address</option>
+                        
+                        {% for address in addressList %}
+                            <option value="{{ address.id }}">
+                                {{ address.address_line_1 }}, 
+                                {{ address.address_line_2 }}, 
+                                {{ address.city }}, 
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <label for="floatingSelect">Select Location</label>
+                </div>
+                
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Continue</button>
+                <hr class="my-4">
+                <small class="text-body-secondary">By clicking continue, you are going to select flowers that you want</small>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+{% block css %}
+
+{% endblock %}

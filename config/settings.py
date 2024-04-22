@@ -88,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'flora_contact',
         'USER': 'root',
-        'PASSWORD': 'ashuabbas@123',
+        'PASSWORD': '9199252671',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -138,6 +138,10 @@ MEDIA_ROOT = BASE_DIR.joinpath('media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LGOIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+LOGIN_URL = 'clogin'
+
 
 # Authentication
 

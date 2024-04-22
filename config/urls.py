@@ -20,9 +20,9 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
-from shop.views import contact_details,menu_details,about_details , feedback_details , subscription_details
-from shop.views import index
+from shop.views import *
 from accounts.views import *
+
 
 
 urlpatterns = [
@@ -41,7 +41,10 @@ urlpatterns = [
     path('vendor/register', vendor_register_view, name='vregister'),
 
 
-    path('subscription',subscription_details, name='subscription'),
+    path('subscription/view',subscription_details, name='subscription'),
+    path('subscription/create',subscription_create, name='subscription_create'),
+    path('select/flowers',select_flowers, name='select_flowers'),
+    path('address/create',address_create, name='address_create'),
     path('feedback', feedback_details, name='feedback'),
 ]
 
