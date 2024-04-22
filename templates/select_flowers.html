@@ -8,29 +8,49 @@ Take Subscription
 {% block content %}
 <section>
     <div class="container my-5">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-            {% for item in flowers %}
-            <div class="col">
-                <div class="card shadow-sm">
-                    <img class="card-img" src="{{ item.image.url }}" alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+        <form action="" method="post">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% for item in flowers %}
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <img class="card-img" src="{{ item.image.url }}" alt="Card image cap">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-primary">
+                                        {{item.season_type|title}}
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-success">
+                                        {{item.maintainance_type|title}}
+                                    </button>
+                                </div>
+                                <small class="text-body-secondary fs-5">${{item.price|floatformat:2}}</small>
                             </div>
-                            <small class="text-body-secondary">9 mins</small>
+                            <p class="card-text">{{item.description|truncatewords:20}}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="" id="" type="checkbox"
+                                            value="{{item.id}}" aria-label="{{item.name}}" />
+                                        Add to Subscription
+                                    </div>
+                                </div>
+                               <!-- quantity -->
+                                <div class="input-group">
+                                    <input type="number" class="form-control" value="1" aria-label="Quantity" min="1" max="100">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- submit -->
+                {% endfor %}
+                
             </div>
-            {% endfor %}
-
-
-        </div>
+            <div class="row my-3">
+                <button type="submit" class="btn btn-primary">Complete Subscription</button>
+            </div>
+        </form>
     </div>
 </section>
 
@@ -41,3 +61,9 @@ Take Subscription
 {% block css %}
 
 {% endblock %}
+
+
+{% block js %}
+    
+{% endblock js %}
+    
