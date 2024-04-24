@@ -9,4 +9,3 @@ admin.site.register(Subscription)
 admin.site.register(SelectedFlowers)
 admin.site.register(Address)
 admin.site.register(Vendor)
-

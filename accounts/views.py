@@ -50,4 +50,5 @@ def logout_view(request):
     messages.success(request, "logout successful")
     return redirect('clogin')
 
+
     

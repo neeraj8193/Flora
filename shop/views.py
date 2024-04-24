@@ -1,4 +1,4 @@
-from django.shortcuts import render , redirect 
+from django.shortcuts import render , redirect ,get_object_or_404
 from .models import Contact , Feedback
 from django.contrib import messages  
 from .models import *
@@ -9,7 +9,7 @@ from django.shortcuts import render , redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import datetime
-from .forms import AddressForm, EditProfileForm , ProfileForm
+from .forms import AddressForm , ProfileForm
 
 def index(request):
     return render(request,'index.html')
@@ -131,7 +131,8 @@ def select_flowers(request):
 
 @login_required
 def profile(request):
-    if request.method == 'POST':
+    
+    """if request.method == 'POST':
         form = ProfileForm(request.POST,request.FILES,instance = request.user.profile)
         if form.is_valid():
             form.save()
@@ -139,30 +140,43 @@ def profile(request):
             messages.success(request,f'{username} , your profile is updated ')
             return redirect('/')
         else:
-            form = ProfileForm(instance = request.user.profile)
-        context = {'form' : form}
-    return render(request, 'profile.html' , context)
+            form = ProfileForm(instance = request.user.profile)"""
+    try:
+        profile = Profile.objects.get(user=request.user)
+    except Profile.DoesNotExist:
+        return redirect('create_profile')
+    return render(request, 'profile.html' , {'profile':profile})
+
+def create_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST,request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            messages.success(request,"Profile created successfully!")
+            return redirect('profile')
+        else:
+            messages.error(request,"Please fill all the fields correctly!")
+    else:
+        form = ProfileForm()
+    return render(request,'create_profile.html',{
+        'form':form,
+    })
     
 
 @login_required
 def edit_profile(request):
+    profile = Profile.objects.get(user=request.user)
+    if profile is None:
+        return redirect('create_profile')
+    form = ProfileForm(instance=profile)
     if request.method == "POST":
-        form = EditProfileForm(request.user.username, request.FILES)
+        form = ProfileForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
-            about_me = form.cleaned_data["about_me"]
-            username = form.cleaned_data["username"]
-            image = form.cleaned_data["image"]
-
-            user = User.objects.get(id=request.user.id)
-            profile = Profile.objects.get(user=user)
-            user.username = username
-            user.save()
-            profile.about_me = about_me
-            if image:
-                profile.image = image
+            profile = form.save(commit=False)
+            profile.user = request.user
             profile.save()
-            return redirect("profile" ,  username=user.username)
-    else:
-        form = EditProfileForm(requset.user.username)
+            return redirect("profile")
     return render(request, "edit_profile.html", {'form': form})
 

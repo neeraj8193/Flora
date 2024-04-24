@@ -32,8 +32,9 @@ urlpatterns = [
     path('contact', contact_details , name='contact'),
     path('menu', menu_details , name='menu'),
     path('about', about_details , name='about'),
-    path('profile', profile , name='profile'),
-    path('editprofile', edit_profile , name='editprofile'),
+    path('profile/view', profile , name='profile'),
+    path('profile/edit', edit_profile , name='editprofile'),
+    path('profile/create', create_profile , name='create_profile'),
 
 
     path('login/customer', customer_login_view, name='clogin'),
