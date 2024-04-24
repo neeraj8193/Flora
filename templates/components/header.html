@@ -9,6 +9,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
+
           <li><a href="{% url 'home' %}">Home</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
           <li><a href="{% url 'menu' %}">Menu</a></li>
@@ -18,10 +19,10 @@
         </ul>
       </nav><!-- .navbar -->
 
-      <a class="btn-book-a-table" href="{% url 'subscription_create' %}">Take a Subscription</a>
-      <a class="btn btn-primary" href="{% url 'clogin' %}">LogOut</a>
+      <a class="btn btn-primary" href="{% url 'subscription_create' %}">Take a Subscription</a>
+      <a class="btn btn-secondary" href="{% url 'profile' %}">Profile</a>
+      <a class="btn btn-danger" href="{% url 'clogin' %}">LogOut</a>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-
     </div>
   </header>

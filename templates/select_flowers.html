@@ -24,22 +24,24 @@ Take Subscription
                                         {{item.maintainance_type|title}}
                                     </button>
                                 </div>
-                                <small class="text-body-secondary fs-5">${{item.price|floatformat:2}}</small>
+                                <small class="text-body-secondary fs-5">Rs {{item.price|floatformat:2}}</small>
                             </div>
                             <p class="card-text">{{item.description|truncatewords:20}}</p>
-                            <div class="d-flex justify-content-between align-items-center">
+
+                            <div class="d-flex justify-content-between align-items-center gap-4">
                                 <div class="btn-group">
                                     <div class="form-check">
-                                        <input class="form-check-input" name="" id="" type="checkbox"
-                                            value="{{item.id}}" aria-label="{{item.name}}" />
-                                        Add to Subscription
+                                        <input type="number" class="form-control" value="1" aria-label="Quantity" min="1" max="99">
                                     </div>
                                 </div>
                                <!-- quantity -->
                                 <div class="input-group">
-                                    <input type="number" class="form-control" value="1" aria-label="Quantity" min="1" max="100">
+                                    <input class="form-check-input" name="" id="" type="checkbox"
+                                            value="{{item.id}}" aria-label="{{item.name}}" />
+                                        Add to Subscription
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

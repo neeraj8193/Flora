@@ -9,7 +9,7 @@ from django.shortcuts import render , redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import datetime
-from .forms import AddressForm
+from .forms import AddressForm, EditProfileForm , ProfileForm
 
 def index(request):
     return render(request,'index.html')
@@ -129,5 +129,40 @@ def select_flowers(request):
         'flowers':page_obj,
     })
 
+@login_required
+def profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST,request.FILES,instance = request.user.profile)
+        if form.is_valid():
+            form.save()
+            username = request.user.username
+            messages.success(request,f'{username} , your profile is updated ')
+            return redirect('/')
+        else:
+            form = ProfileForm(instance = request.user.profile)
+        context = {'form' : form}
+    return render(request, 'profile.html' , context)
+    
 
+@login_required
+def edit_profile(request):
+    if request.method == "POST":
+        form = EditProfileForm(request.user.username, request.FILES)
+        if form.is_valid():
+            about_me = form.cleaned_data["about_me"]
+            username = form.cleaned_data["username"]
+            image = form.cleaned_data["image"]
+
+            user = User.objects.get(id=request.user.id)
+            profile = Profile.objects.get(user=user)
+            user.username = username
+            user.save()
+            profile.about_me = about_me
+            if image:
+                profile.image = image
+            profile.save()
+            return redirect("profile" ,  username=user.username)
+    else:
+        form = EditProfileForm(requset.user.username)
+    return render(request, "edit_profile.html", {'form': form})
 

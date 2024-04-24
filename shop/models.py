@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User 
     
+    
 class Contact(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE , null = True , blank = True)
     name = models.CharField(max_length = 20)
@@ -12,7 +13,6 @@ class Contact(models.Model):
     def __str__(self):
         return self.name
 
-
 class Feedback(models.Model):
     name = models.CharField(max_length = 20)
     email = models.EmailField()
@@ -21,8 +21,7 @@ class Feedback(models.Model):
 
     def __str__(self):
         return self.name
-    
-    
+     
 class FlowersOption(models.Model):
     season_type = (
         ('summer','summer'),
@@ -99,3 +98,11 @@ class Vendor(models.Model):
     
     def __str__(self):
         return self.name
+
+class Profile(models.Model):
+    about_me = models.TextField(default='Ashu' , max_length=100 , null = True)
+    image = models.ImageField(default='media/default.jpg' , upload_to='profile_image', null=True, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
