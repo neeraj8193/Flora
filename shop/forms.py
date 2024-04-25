@@ -12,4 +12,4 @@ class AddressForm(forms.ModelForm):
 class ProfileForm(ModelForm):
      class Meta:
         model = Profile
-        fields = ['about_me','image']
+        fields = ['email','phone','address','about','image']

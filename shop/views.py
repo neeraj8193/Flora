@@ -25,6 +25,9 @@ def menu_details(request):
 def subscription_details(request):
     return render(request,'subscription.html')
 
+def selected_flowers_list(request):
+    return render(request , 'selected_flowers_list.html' )
+
 def contact_details(request):
     if request.method == 'POST' :
         name = request.POST.get('name')
@@ -180,3 +183,10 @@ def edit_profile(request):
             return redirect("profile")
     return render(request, "edit_profile.html", {'form': form})
 
+
+def add_to_subscription(request , prod):
+    flower = FlowersOption.objects.get(prod = prod)
+    user = request.user
+    cart , _ = Cart.objects.get_or_create(user=user , is_paid = False)
+    
+    return redirect('select_flowers.html')

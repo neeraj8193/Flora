@@ -35,7 +35,7 @@ urlpatterns = [
     path('profile/view', profile , name='profile'),
     path('profile/edit', edit_profile , name='editprofile'),
     path('profile/create', create_profile , name='create_profile'),
-
+    path('selected/flowers', selected_flowers_list , name='selected/flowers'),
 
     path('login/customer', customer_login_view, name='clogin'),
     path('register/customer', customer_register_view, name='cregister'),

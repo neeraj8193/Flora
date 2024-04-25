@@ -100,9 +100,24 @@ class Vendor(models.Model):
         return self.name
 
 class Profile(models.Model):
-    about_me = models.TextField(default='Ashu' , max_length=100 , null = True)
+    email = models.EmailField(default='user@gmail.com')
+    phone = models.CharField(default='0000000000' , max_length=18)
+    address = models.CharField(max_length = 150 , default = 'xyz')
+    about = models.TextField(default='None' , max_length=100 , null = True)
     image = models.ImageField(default='media/default.jpg' , upload_to='profile_image', null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user.username
+
+
+class Cart(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='carts')
+    is_paid = models.BooleanField(default=False)
+
+class CartItems(models.Model):
+    cart = models.ForeignKey(Cart , on_delete=models.CASCADE , related_name='cart_items')
+    product = models.ForeignKey(FlowersOption , on_delete = models.SET_NULL , null = True , blank=True)
+    def get_price(self):
+        price=[self.product.price]
+        return sum(price)
