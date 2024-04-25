@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import datetime
 from .forms import AddressForm , ProfileForm
+from django.http import HttpResponse
 
 def index(request):
     return render(request,'index.html')
@@ -134,16 +135,7 @@ def select_flowers(request):
 
 @login_required
 def profile(request):
-    
-    """if request.method == 'POST':
-        form = ProfileForm(request.POST,request.FILES,instance = request.user.profile)
-        if form.is_valid():
-            form.save()
-            username = request.user.username
-            messages.success(request,f'{username} , your profile is updated ')
-            return redirect('/')
-        else:
-            form = ProfileForm(instance = request.user.profile)"""
+
     try:
         profile = Profile.objects.get(user=request.user)
     except Profile.DoesNotExist:
@@ -175,13 +167,18 @@ def edit_profile(request):
         return redirect('create_profile')
     form = ProfileForm(instance=profile)
     if request.method == "POST":
-        form = ProfileForm(request.POST, request.FILES, instance=request.user)
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
+            # update
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
+            messages.success(request, "Profile updated successfully!")
             return redirect("profile")
-    return render(request, "edit_profile.html", {'form': form})
+    ctx = {
+        "form": form,
+    }
+    return render(request, "edit_profile.html", ctx )
 
 
 def add_to_subscription(request , prod):
@@ -190,3 +187,26 @@ def add_to_subscription(request , prod):
     cart , _ = Cart.objects.get_or_create(user=user , is_paid = False)
     
     return redirect('select_flowers.html')
+
+def add_to_session_cart(request):
+    if request.method == 'POST':
+        fid = request.POST.get('flower_id')
+        qty = request.POST.get('qty')
+        if 'flowers' in request.session:
+            request.session['flowers'].append(fid)
+        else:
+            request.session['flowers'] = [fid]
+        return HttpResponse("Added")
+    
+def remove_from_session_cart(request):
+    if request.method == 'POST':
+        fid = request.POST.get('flower_id')
+        if 'flowers' in request.session:
+            request.session['flowers'].remove(fid)
+        return HttpResponse("Removed")
+    
+def clear_session_cart(request):
+    if 'flowers' in request.session:
+        del request.session['flowers']
+    return HttpResponse("Cleared")
+

@@ -10,7 +10,7 @@
                     <div class="row g-0">
                         <div class="col-md-4 gradient-custom text-center text-white"
                             style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                            <img src="{{ user.profile.img.url }}" alt="Avatar" class="img-fluid my-5"
+                            <img src="{{ profile.image.url }}" alt="Avatar" class="img-fluid my-5"
                                 style="width: 80px;" />
                             <h5>{{user.username}} </h5>
                             <p><a href="{% url 'editprofile' %}">Edit your profile</a></p>
@@ -22,25 +22,25 @@
                                 <div class="row pt-1">
                                     <div class="col-6 mb-3">
                                         <h6>About</h6>
-                                        <p class="text-muted">{{user.profile.about}}</p>
+                                        <p class="text-muted">{{profile.about}}</p>
                                     </div>
                                 </div>
                                 <div class="row pt-1">
                                     <div class="col-6 mb-3">
                                         <h6>Address</h6>
-                                        <p class="text-muted">{{user.profile.address}}</p>
+                                        <p class="text-muted">{{profile.address}}</p>
                                     </div>
                                 </div>
                                 <div class="row pt-1">
                                     <div class="col-6 mb-3">
                                         <h6>Email</h6>
-                                        <p class="text-muted">{{user.profile.email}}</p>
+                                        <p class="text-muted">{{profile.email}}</p>
                                     </div>
                                 </div>
                                 <div class="row pt-1">
                                     <div class="col-6 mb-3">
                                         <h6>Phone</h6>
-                                        <p class="text-muted">{{user.profile.phone}}</p>
+                                        <p class="text-muted">{{profile.phone}}</p>
                                     </div>
                                 </div>
                             </div>
