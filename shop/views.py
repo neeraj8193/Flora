@@ -135,12 +135,19 @@ def select_flowers(request):
 
 @login_required
 def profile(request):
-
     try:
         profile = Profile.objects.get(user=request.user)
     except Profile.DoesNotExist:
         return redirect('create_profile')
     return render(request, 'profile.html' , {'profile':profile})
+
+@login_required
+def vendorprofile(request):
+    try:
+        profile = Profile.objects.get(user=request.user)
+    except Profile.DoesNotExist:
+        return redirect('create_vendorprofile')
+    return render(request, 'vendorprofile.html' , {'profile':profile})
 
 def create_profile(request):
     if request.method == 'POST':
@@ -158,7 +165,23 @@ def create_profile(request):
     return render(request,'create_profile.html',{
         'form':form,
     })
-    
+
+def create_vendorprofile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST,request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            messages.success(request,"Profile created successfully!")
+            return redirect('vendorprofile')
+        else:
+            messages.error(request,"Please fill all the fields correctly!")
+    else:
+        form = ProfileForm()
+    return render(request,'create_vendorprofile.html',{
+        'form':form,
+    })
 
 @login_required
 def edit_profile(request):
@@ -180,6 +203,26 @@ def edit_profile(request):
     }
     return render(request, "edit_profile.html", ctx )
 
+
+@login_required
+def edit_vendorprofile(request):
+    profile = Profile.objects.get(user=request.user)
+    if profile is None:
+        return redirect('create_vendorprofile')
+    form = ProfileForm(instance=profile)
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            # update
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            messages.success(request, "Profile updated successfully!")
+            return redirect("vendorprofile")
+    ctx = {
+        "form": form,
+    }
+    return render(request, "edit_vendorprofile.html", ctx )
 
 def add_to_subscription(request , prod):
     flower = FlowersOption.objects.get(prod = prod)

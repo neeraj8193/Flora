@@ -35,6 +35,11 @@ urlpatterns = [
     path('profile/view', profile , name='profile'),
     path('profile/edit', edit_profile , name='editprofile'),
     path('profile/create', create_profile , name='create_profile'),
+
+    path('vendorprofile/view', vendorprofile , name='vendorprofile'),
+    path('vendorprofile/edit', edit_vendorprofile , name='editvendorprofile'),
+    path('vendorprofile/create', create_vendorprofile , name='create_vendorprofile'),
+
     path('selected/flowers', selected_flowers_list , name='selected/flowers'),
 
     path('login/customer', customer_login_view, name='clogin'),

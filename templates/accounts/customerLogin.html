@@ -34,7 +34,6 @@
             background-repeat: no-repeat;
             background-position: center;
             background-image: url('/static/img/custlogin.jpg')
-            
         }
 
         .btn {
@@ -79,79 +78,85 @@
 
 
 <body>
-    <div class="row vh-100 g-0">
+    <section class="my-4">
 
-        <div class="col-lg-6 position-relative d-none d-lg-block">
-            <div class="bg-holder"></div>
-        </div>
+        <div class="row vh-100 g-0">
+
+            <div class="col-lg-6 position-relative d-none d-lg-block">
+                <div class="bg-holder"></div>
+            </div>
 
 
-        <div class="col-lg-6">
+            <div class="col-lg-6">
 
-            <div class="row align-items-center justify-content-center h-100 g-0 px-4 px-sm-0">
+                <div class="row align-items-center justify-content-center h-100 g-0 px-4 px-sm-0">
 
-                <div class="col col-sm-6 col-lg-7 col-xl-6">
+                    <div class="col col-sm-6 col-lg-7 col-xl-6">
 
-                    <a href="#" class="d-flex justify-content-center align-items-center mb-3">
-                        <img src="/static/img/floraWebsiteLogo.jpg" alt="" width="150">
-                    </a>
+                        <a href="#" class="d-flex justify-content-center align-items-center mb-3">
+                            <img src="/static/img/floraWebsiteLogo.jpg" alt="" width="150">
+                        </a>
 
-                    <div class="text-center mb-3">
-                        <h3 class="fw-bold">Log In</h3>
-                        <p class="text-secondary">Get access to your account</p>
-                    </div>
-
-                    <button class="btn btn-outline-secondary btn-lg btn-outline-custom w-100 mb-3"><i
-                            class='bx bxl-google text-danger me-1 fs-6'></i> Login with Google</button>
-                    <button class="btn btn-outline-secondary btn-lg btn-outline-custom w-100"><i
-                            class='bx bxl-facebook text-primary me-1 fs-6'></i> Login with Facebook</button>
-
-                    <div class="position-relative">
-                        <hr class="text-secondary divider">
-                        <div class="divider-content-center">or</div>
-                    </div>
-
-                    <form action="#" method="post">
-                        {% csrf_token %}
-                        <div class="input-group mb-3">
-                            <span class="input-group-text">
-                                <i class='bx bx-user'></i>
-                            </span>
-                            <input type="text" class="form-control form-control-lg fs-6" name="username" placeholder="Username">
+                        <div class="text-center mb-3">
+                            <h3 class="fw-bold">Log In</h3>
+                            <p class="text-secondary">Get access to your account</p>
                         </div>
 
-                        <div class="input-group mb-3">
-                            <span class="input-group-text">
-                                <i class='bx bx-lock-alt'></i>
-                            </span>
-                            <input type="password" class=" form-control form-control-lg fs-6" name="password" placeholder="Password">
+                        <button class="btn btn-outline-secondary btn-lg btn-outline-custom w-100 mb-3"><i
+                                class='bx bxl-google text-danger me-1 fs-6'></i> Login with Google</button>
+                        <button class="btn btn-outline-secondary btn-lg btn-outline-custom w-100"><i
+                                class='bx bxl-facebook text-primary me-1 fs-6'></i> Login with Facebook</button>
+
+                        <div class="position-relative">
+                            <hr class="text-secondary divider">
+                            <div class="divider-content-center">or</div>
                         </div>
 
-                        <div class="input-group mb-3 d-flex justify-content-between">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="formCheck">
-                                <label for="formCheck" class="form-check-label text-secondary"><small>Remember
-                                        Me</small></label>
+                        <form action="#" method="post">
+                            {% csrf_token %}
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">
+                                    <i class='bx bx-user'></i>
+                                </span>
+                                <input type="text" class="form-control form-control-lg fs-6" name="username"
+                                    placeholder="Username">
                             </div>
-                            <div>
-                                <small><a href="#" class="fw-bold" style="text-decoration: none;">Forgot Password?</a></small>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">
+                                    <i class='bx bx-lock-alt'></i>
+                                </span>
+                                <input type="password" class=" form-control form-control-lg fs-6" name="password"
+                                    placeholder="Password">
                             </div>
+
+                            <div class="input-group mb-3 d-flex justify-content-between">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="formCheck">
+                                    <label for="formCheck" class="form-check-label text-secondary"><small>Remember
+                                            Me</small></label>
+                                </div>
+                                <div>
+                                    <small><a href="#" class="fw-bold" style="text-decoration: none;">Forgot
+                                            Password?</a></small>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary btn-lg w-100 mb-3">Login</button>
+                        </form>
+
+                        <div class="text-center">
+                            <small>Don't have an account? <a href="{% url 'cregister' %}" class="fw-bold">Sign
+                                    Up</a></small>
                         </div>
 
-                        <button class="btn btn-primary btn-lg w-100 mb-3">Login</button>
-                    </form>
-
-                    <div class="text-center">
-                        <small>Don't have an account? <a href="{% url 'cregister' %}" class="fw-bold">Sign Up</a></small>
                     </div>
 
                 </div>
-
             </div>
+
         </div>
-
-    </div>
-
+    </section>
 </body>
 
 </html>
