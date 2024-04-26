@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 import datetime
 from .forms import AddressForm , ProfileForm
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
     return render(request,'index.html')
@@ -127,10 +128,26 @@ def select_flowers(request):
     page_obj = paginator.get_page(page_number)
     sub_id = request.session.get('subscription_id')
     if request.method == 'POST' :
-        flower_ids = request.POST.getlist('flower_id')
-        
+        flower_ids = request.POST.getlist('flowers')
+        for fid in flower_ids:
+            flower = FlowersOption.objects.get(id=fid)
+            selected_flower = SelectedFlowers(user=request.user, flower=flower, subscription_id=sub_id)
+            selected_flower.save()
+        messages.success(request,"Flowers added successfully!")
+        return redirect('payment_new')
     return render(request,'select_flowers.html',{
         'flowers':page_obj,
+    })
+
+@login_required
+@csrf_exempt
+def sub_new_payment(request):
+    sub_id = request.session.get('subscription_id')
+    subscription = Subscription.objects.get(id=sub_id)
+    added_flowers = SelectedFlowers.objects.filter(subscription_id=sub_id) 
+    return render(request,'payment_new.html',{
+        'subscription':subscription,
+        'selected_flowers':added_flowers,
     })
 
 @login_required

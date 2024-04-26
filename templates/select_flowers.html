@@ -9,9 +9,10 @@ Take Subscription
 <section>
     <div class="container my-5">
         <form action="" method="post">
+            {% csrf_token %}
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
                 {% for item in flowers %}
-                <div class="col">
+                <div class="col" for="item_{{item.id}}">
                     <div class="card shadow-sm">
                         <img class="card-img" src="{{ item.image.url }}" alt="Card image cap" style="height: 300px;">
                         <div class="card-body">
@@ -28,9 +29,9 @@ Take Subscription
                             </div>
                             <p class="card-text">{{item.description|truncatewords:15}}</p>
 
-                            <div class="d-flex justify-content-start align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
                                 <div class="mb-2">
-                                    <h3>Quantity :</h3>
+                                    <h4>Quantity</h4>
                                 </div>
                                 <div class="btn-group mb-3">
                                     <div class="form-check">
@@ -38,14 +39,22 @@ Take Subscription
                                             min="1" max="100">
                                     </div>
                                 </div>
-                                <!-- quantity -->
                             </div>
-                            <div class="input-group">
-                                <button class="btn btn-outline-primary">Add to Subscription</button>
-                                <!-- <input class="form-check-input" name="" id="" type="checkbox" value="{{item.id}}"
-                                    aria-label="{{item.name}}" />
-                                Add to Subscription -->
-                            </div>
+
+                            <label for="item_{{item.id}}" class="w-100 ">
+                                <div class="d-flex align-items-center ">
+                                    <div class="">
+                                        Add to Subscription
+                                    </div>
+                                    <div class="ms-auto">
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="flowers" id="item_{{item.id}}" type="checkbox"
+                                                value="{{item.id}}" aria-label="Text for screen reader" />
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </label>
 
                         </div>
                     </div>
@@ -71,4 +80,7 @@ Take Subscription
 
 {% block js %}
 <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+<script>
+    // click on
+</script>
 {% endblock js %}

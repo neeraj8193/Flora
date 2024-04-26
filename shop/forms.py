@@ -13,3 +13,9 @@ class ProfileForm(ModelForm):
      class Meta:
         model = Profile
         fields = ['email','phone','address','about','image']
+
+
+class ProfileForm(ModelForm):
+     class Meta:
+        model = VendorProfile
+        fields = ['email','phone','address','about','image']

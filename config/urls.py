@@ -52,6 +52,7 @@ urlpatterns = [
     path('subscription/view',subscription_details, name='subscription'),
     path('subscription/create',subscription_create, name='subscription_create'),
     path('select/flowers',select_flowers, name='select_flowers'),
+    path('subscription/payment',sub_new_payment, name='payment_new'),
     path('address/create',address_create, name='address_create'),
     path('feedback', feedback_details, name='feedback'),
 ]
