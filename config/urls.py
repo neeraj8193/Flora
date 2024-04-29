@@ -49,7 +49,8 @@ urlpatterns = [
     path('vendor/register', vendor_register_view, name='vregister'),
 
 
-    path('subscription/view',subscription_details, name='subscription'),
+    path('subscription/taten',subscription_details, name='subscription_taken'),
+    path('subscription/taken/list',subscription_item_details, name='subscription_list'),
     path('subscription/create',subscription_create, name='subscription_create'),
     path('select/flowers',select_flowers, name='select_flowers'),
     path('subscription/payment',sub_new_payment, name='payment_new'),

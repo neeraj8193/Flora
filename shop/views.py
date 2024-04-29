@@ -24,9 +24,6 @@ def menu_details(request):
         'flowers':FlowersOption.objects.all(),
     })
 
-def subscription_details(request):
-    return render(request,'subscription.html')
-
 def selected_flowers_list(request):
     return render(request , 'selected_flowers_list.html' )
 
@@ -37,7 +34,7 @@ def contact_details(request):
         phone = request.POST.get('phone')
         message = request.POST.get('message')
 
-        if len(name)>0 and len(email)>0 and len(phone)>10 and len(message)>10 :
+        if len(name)>0 and len(email)>0 and len(phone)>=10 and len(message)>10 :
             contact = Contact(name=name , email=email , phone=phone , message=message)
             contact.save()
             messages.success(request,"Great Your Message has been sent successfully !")
@@ -119,6 +116,14 @@ def subscription_create(request):
     return render(request,'subscription_create.html', {
         'addressList':addressList,
     })
+
+
+def subscription_details(request):
+    return render(request,'subscription_list.html')
+
+def subscription_item_details(request):
+    return render(request,'subscription_list_items.html')
+
 
 @login_required
 def select_flowers(request):
@@ -241,12 +246,6 @@ def edit_vendorprofile(request):
     }
     return render(request, "edit_vendorprofile.html", ctx )
 
-def add_to_subscription(request , prod):
-    flower = FlowersOption.objects.get(prod = prod)
-    user = request.user
-    cart , _ = Cart.objects.get_or_create(user=user , is_paid = False)
-    
-    return redirect('select_flowers.html')
 
 def add_to_session_cart(request):
     if request.method == 'POST':

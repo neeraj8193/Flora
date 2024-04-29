@@ -13,6 +13,7 @@
     <title>Login Form</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 
         * {
             padding: 0;
@@ -21,35 +22,40 @@
         }
 
         body {
-            background-image: url('/static/img/vendorlogin.jpg');
-         
-            background-repeat: no-repeat;
-            background-size: cover;
-            font-family: 'Poppins', sans-serif;
+            background-color: rgba(198, 215, 215, 0.813);
+            font-family: "Nunito Sans", sans-serif;
 
         }
 
         form {
             border-radius: 20px;
             margin-top: 150px !important;
-            width: 24% !important;
+            width: 30% !important;
             background-color: white !important;
             padding: 50px;
         }
-        .signin a{
+
+        .signin a {
             text-decoration: none;
             color: #fff;
         }
-        .signin{
+
+        .signin {
             color: #fff;
         }
 
         .btn-primary {
             width: 100%;
+            border: 1px aquamarine;
+            border-radius: 50px;
+            background: linear-gradient(90deg, rgb(11, 174, 228) 0%, rgba(75, 14, 154, 1) 35%, rgba(0, 212, 255, 1) 100%);
+        }
+
+        .btn-primary:hover {
+            width: 100%;
             border: none;
             border-radius: 50px;
-            background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(75, 14, 154, 1) 35%, rgba(0, 212, 255, 1) 100%);
-
+            background: linear-gradient(90deg, rgb(18, 148, 218) 0%, rgb(15, 136, 201) 35%, rgba(0, 212, 255, 1) 100%);
         }
 
         .form-control {
@@ -69,8 +75,9 @@
         .form-label {
             font-weight: 800 !important;
         }
-        .container form a img{
-            width:12px;
+
+        .container form a img {
+            width: 12px;
             height: 8vh;
         }
 
@@ -83,30 +90,36 @@
 </head>
 
 <body>
-    
-    <div class="container-fluid">
-        <a href="#" class="d-flex justify-content-center align-items-center mb-3 mt-5">
-            <img src="/static/img/floraWebsiteLogo.jpg" alt="img" width="130">
-        </a>
-        
+
+    <div class="container-fluid" style="margin-top: 4%;">
+
         <form class="mx-auto mt-2 " action="" method="post">
             {% csrf_token %}
 
+            <a href="#" class="d-flex justify-content-center align-items-center mb-4">
+                <img src="/static/img/floraWebsiteLogo.jpg" alt="img" width="130">
+            </a>
 
             <h4 class="text-center">Login</h4>
 
             <div class="mb-3 mt-3">
                 <label for="exampleInputEmail1" class="form-label">User Name</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Enter the Username">
             </div>
             <div class="mb-2">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-                <div id="emailHelp" class="form-text mt-3"><a href="#">Forget password ?</a></div>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter the Password">
+            </div>
+            <div class="mb-2">
+                <label for="exampleInputPassword2" class="form-label">Key</label>
+                <input type="password" class="form-control" id="exampleInputPassword2"
+                    placeholder="Enter the Key provided">
             </div>
 
             <button type="submit" class="btn btn-primary mt-5">Login</button>
-            <button type="submit" class="btn btn-primary mt-3 signin"> <a href="{% url 'vregister' %}">Create new account</a></button>
+            <button type="submit" class="btn btn-primary mt-3 signin"> <a href="{% url 'vregister' %}">Create new
+                    account</a></button>
         </form>
     </div>
 </body>
