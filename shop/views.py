@@ -12,6 +12,12 @@ import datetime
 from .forms import AddressForm , ProfileForm
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+import dotenv
+import stripe
+import os
+from django.conf import settings
+from django.core.mail import send_mail
+
 
 def index(request):
     return render(request,'index.html')
@@ -150,10 +156,52 @@ def sub_new_payment(request):
     sub_id = request.session.get('subscription_id')
     subscription = Subscription.objects.get(id=sub_id)
     added_flowers = SelectedFlowers.objects.filter(subscription_id=sub_id) 
+    checkout_id = create_checkout_session(request)
     return render(request,'payment_new.html',{
         'subscription':subscription,
         'selected_flowers':added_flowers,
+        'checkout_id':checkout_id,
     })
+
+@csrf_exempt
+def create_checkout_session(request):
+    base_url = request.build_absolute_uri('/')[:-1]
+    stripe.api_key = settings.STRIPE_SK
+    print(stripe.api_key)
+    sub_id = request.session.get('subscription_id')
+    subscription = Subscription.objects.get(id=sub_id)
+    added_flowers = SelectedFlowers.objects.filter(subscription_id=sub_id)
+    user = request.user
+    currency = 'inr'
+
+
+    total_price = 0
+    for flower in added_flowers:
+        price = flower.flower.price
+        qty  = flower.quantity
+        total_price += price * qty
+               
+    if request.method == 'POST':
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            mode='payment',
+            success_url=f'{base_url}/success/',
+            cancel_url=f'{base_url}/cancel/',
+            line_items=[
+                {
+                    'price_data': {
+                        'currency': currency,
+                        'product_data': {
+                            'name': 'Flora Subscription',
+                        },
+                        'unit_amount': int(total_price*100),
+                    },
+                    'quantity': 1,
+                },
+            ],
+
+        )
+        return redirect(checkout_session.url)
 
 @login_required
 def profile(request):

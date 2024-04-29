@@ -6,6 +6,7 @@ Create new subscription
 {% endblock %}
 
 {% block content %}
+<script src="https://js.stripe.com/v3/"></script>
 <section class="section-content padding-y my-4">
     <div class="container">
 
@@ -91,5 +92,17 @@ Create new subscription
         </div>
 
     </div> <!-- container .//  -->
+    
+    {% if checkout_id %}
+        <!-- launch strip -->
+        stripe.redirectToCheckout({
+            sessionId: "{{checkout_id}}"
+        }).then(function (result) {
+            console.log(result.error.message);
+        });
+    {% else %}
+        
+    {% endif %}
+        
 </section>
 {% endblock %}

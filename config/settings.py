@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 
 from pathlib import Path
+import os
+import dotenv
+
+dotenv.load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -88,7 +92,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'flora_contact',
         'USER': 'root',
-        'PASSWORD': 'ashuabbas@123',
+        'PASSWORD': '9199252671',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -152,3 +156,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "neerajgupta6003@digipodium.com	"
 EMAIL_HOST_PASSWORD = "digi60032k23"
+
+# stripe keys
+STRIPE_PK = os.getenv('stripe_pk')
+STRIP_SK = os.getenv('stripe_sk')
