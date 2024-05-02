@@ -1,15 +1,15 @@
 {% extends 'layout/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<section class="my-4">
+<section class="my-4" style="background-color: ;">
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-6">
                 <h2 class="my-5">Edit profile</h2>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" style="margin-left: 40%;">Submit</button>
                 </form>
                 <br>
             </div>

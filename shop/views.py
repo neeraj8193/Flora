@@ -9,7 +9,7 @@ from django.shortcuts import render , redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import datetime
-from .forms import AddressForm , ProfileForm
+from .forms import AddressForm , ProfileForm , VendorProfileForm
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import dotenv
@@ -214,8 +214,8 @@ def profile(request):
 @login_required
 def vendorprofile(request):
     try:
-        profile = Profile.objects.get(user=request.user)
-    except Profile.DoesNotExist:
+        profile = VendorProfile.objects.get(user=request.user)
+    except VendorProfile.DoesNotExist:
         return redirect('create_vendorprofile')
     return render(request, 'vendorprofile.html' , {'profile':profile})
 
@@ -238,7 +238,7 @@ def create_profile(request):
 
 def create_vendorprofile(request):
     if request.method == 'POST':
-        form = ProfileForm(request.POST,request.FILES)
+        form = VendorProfileForm(request.POST,request.FILES)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user
@@ -248,7 +248,7 @@ def create_vendorprofile(request):
         else:
             messages.error(request,"Please fill all the fields correctly!")
     else:
-        form = ProfileForm()
+        form = VendorProfileForm()
     return render(request,'create_vendorprofile.html',{
         'form':form,
     })
@@ -276,12 +276,12 @@ def edit_profile(request):
 
 @login_required
 def edit_vendorprofile(request):
-    profile = Profile.objects.get(user=request.user)
+    profile = VendorProfile.objects.get(user=request.user)
     if profile is None:
         return redirect('create_vendorprofile')
-    form = ProfileForm(instance=profile)
+    form = VendorProfileForm(instance=profile)
     if request.method == "POST":
-        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        form = VendorProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             # update
             profile = form.save(commit=False)

@@ -47,12 +47,14 @@ def logout_view(request):
 
 #vendor 
 def vendor_register_view(request):
-    form = UserCreationForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        messages.success(request, "account created successfully")
-        return redirect('vlogin')
-    return render(request, 'accounts/vendorRegister.html')
+    form = UserCreationForm()
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "account created successfully")
+            return redirect('vlogin')
+    return render(request, 'accounts/vendorRegister.html', {'form': form})
 
 
 def vendor_login_view(request):
