@@ -84,6 +84,7 @@ class SelectedFlowers(models.Model):
     flower = models.ForeignKey(FlowersOption, on_delete = models.CASCADE , null = True , blank = True)
     subscription = models.ForeignKey(Subscription, on_delete = models.CASCADE , null = True , blank = True)
     quantity = models.IntegerField(default=1)    
+    created_at = models.DateTimeField(auto_now_add = True)
     def __str__(self):
         return self.user.username
 

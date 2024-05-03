@@ -56,6 +56,10 @@ urlpatterns = [
     path('subscription/payment',sub_new_payment, name='payment_new'),
     path('address/create',address_create, name='address_create'),
     path('feedback', feedback_details, name='feedback'),
+
+    # success url
+    path('success/', success, name='success'),
+    path('cancel', cancel, name='cancel'),
 ]
 
 if settings.DEBUG:

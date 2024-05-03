@@ -159,4 +159,4 @@ EMAIL_HOST_PASSWORD = "digi60032k23"
 
 # stripe keys
 STRIPE_PK = os.getenv('stripe_pk')
-STRIP_SK = os.getenv('stripe_sk')
+STRIPE_SK = os.getenv('stripe_sk')

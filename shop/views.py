@@ -153,14 +153,18 @@ def select_flowers(request):
 @login_required
 @csrf_exempt
 def sub_new_payment(request):
+    stripe_public_key = settings.STRIPE_PK
     sub_id = request.session.get('subscription_id')
     subscription = Subscription.objects.get(id=sub_id)
-    added_flowers = SelectedFlowers.objects.filter(subscription_id=sub_id) 
+    today = datetime.datetime.now().date()
+    added_flowers = SelectedFlowers.objects.filter(subscription_id=sub_id)
     checkout_id = create_checkout_session(request)
+    print(checkout_id)
     return render(request,'payment_new.html',{
         'subscription':subscription,
         'selected_flowers':added_flowers,
         'checkout_id':checkout_id,
+        'spk':stripe_public_key,
     })
 
 @csrf_exempt
@@ -173,6 +177,12 @@ def create_checkout_session(request):
     added_flowers = SelectedFlowers.objects.filter(subscription_id=sub_id)
     user = request.user
     currency = 'inr'
+    print('info')
+    print(f'sub_id: {sub_id}')
+    print(f'subscription: {subscription}')
+    print(f'added_flowers: {added_flowers}')
+    print(f'user: {user}')
+    print(f'currency: {currency}')
 
 
     total_price = 0
@@ -180,28 +190,50 @@ def create_checkout_session(request):
         price = flower.flower.price
         qty  = flower.quantity
         total_price += price * qty
-               
-    if request.method == 'POST':
-        checkout_session = stripe.checkout.Session.create(
-            payment_method_types=['card'],
-            mode='payment',
-            success_url=f'{base_url}/success/',
-            cancel_url=f'{base_url}/cancel/',
-            line_items=[
-                {
-                    'price_data': {
-                        'currency': currency,
-                        'product_data': {
-                            'name': 'Flora Subscription',
-                        },
-                        'unit_amount': int(total_price*100),
-                    },
-                    'quantity': 1,
-                },
-            ],
 
-        )
-        return redirect(checkout_session.url)
+    print(f'total_price: {total_price}')
+               
+    checkout_session = stripe.checkout.Session.create(
+        payment_method_types=['card'],
+        mode='payment',
+        success_url=f'{base_url}/success/',
+        cancel_url=f'{base_url}/cancel/',
+        # customer name and info
+        line_items=[
+            {
+                'price_data': {
+                    'currency': currency,
+                    'product_data': {
+                        'name': 'Flora Subscription',
+                    },
+                    'unit_amount': int(total_price*100),
+                },
+                'quantity': 1,
+                
+            },
+        ],
+        customer_email=user.email,
+        billing_address_collection='required',
+    )
+    return checkout_session.id
+
+def success(request):
+    sub_id = request.session.get('subscription_id')
+    subscription = Subscription.objects.get(id=sub_id)
+    subscription.is_payment_done = True
+    subscription.save()
+    # clear selected flowers
+    SelectedFlowers.objects.filter(subscription_id=sub_id).delete()
+    # clear subscription id from session
+    del request.session['subscription_id']
+    messages.success(request,"Payment successful!")
+    return render(request,'success.html', {
+        'subscription':subscription,
+    })
+
+def cancel(request):
+    messages.error(request,"Payment failed!")
+    return request('cancel.html')
 
 @login_required
 def profile(request):

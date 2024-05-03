@@ -5,8 +5,14 @@
 Create new subscription
 {% endblock %}
 
-{% block content %}
+
+{% block css %}
 <script src="https://js.stripe.com/v3/"></script>
+{% endblock css %}
+
+
+{% block content %}
+
 <section class="section-content padding-y my-4">
     <div class="container">
 
@@ -30,10 +36,11 @@ Create new subscription
                                 <td>
                                     <figure class="itemside">
                                         <div class="aside">
-                                            <img src="{{item.flower.image.url}}" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;">
+                                            <img src="{{item.flower.image.url}}" class="img-thumbnail"
+                                                style="width: 150px; height: 150px; object-fit: cover;">
                                         </div>
                                         <figcaption class="info">
-                                            <a href="#" class="title text-dark">{{item.flower.name}} </a> 
+                                            <a href="#" class="title text-dark">{{item.flower.name}} </a>
                                         </figcaption>
                                     </figure>
                                 </td>
@@ -45,7 +52,7 @@ Create new subscription
                                 <td>
                                     <div class="price-wrap">
                                         <var class="price">Rs {{item.flower.price}}</var>
-                          
+
                                     </div> <!-- price-wrap .// -->
                                 </td>
                                 <td class="text-right">
@@ -60,7 +67,8 @@ Create new subscription
                     </table>
 
                     <div class="card-body border-top">
-                        <a href="#" class="btn btn-primary"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
+                        <a href="{% url 'select_flowers' %}" class="btn btn-primary"> <i class="fa fa-chevron-left"></i>
+                            Continue shopping </a>
                     </div>
                 </div> <!-- card.// -->
 
@@ -83,7 +91,7 @@ Create new subscription
                         </dl>
                         <hr>
                         <div class="card-body border-top">
-                            <a href="#" class="btn btn-danger">Proceed Payment <i class="fa fa-chevron-right"></i></a>
+                            <a href="#" class="btn btn-danger pay">Proceed Payment <i class="fa fa-chevron-right"></i></a>
                         </div>
 
                     </div> <!-- card-body.// -->
@@ -92,17 +100,25 @@ Create new subscription
         </div>
 
     </div> <!-- container .//  -->
-    
-    {% if checkout_id %}
-        <!-- launch strip -->
-        stripe.redirectToCheckout({
-            sessionId: "{{checkout_id}}"
-        }).then(function (result) {
-            console.log(result.error.message);
-        });
-    {% else %}
-        
-    {% endif %}
-        
 </section>
 {% endblock %}
+
+
+{% block js %}
+{% if checkout_id %}
+<script>
+    var stripe = Stripe('{{spk}}');
+    var checkoutId = '{{checkout_id}}';
+    var paymnetBtn = document.querySelector('.pay');
+    paymnetBtn.addEventListener('click', function () {
+        stripe.redirectToCheckout({
+            sessionId: checkoutId
+        }).then(function (result) {
+            console.log(result);
+        });
+    });
+</script>
+{% else %}
+
+{% endif %}
+{% endblock js %}
