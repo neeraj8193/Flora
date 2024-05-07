@@ -1,0 +1,48 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block title %}
+Gallery
+{% endblock %}
+
+{% block content %}
+ <section id="gallery" class="gallery section-bg" style="margin-top: 4%;">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h2 style="font-family: 'Times New Roman', Times, serif;">gallery</h2>
+        <p style="font-family: 'Times New Roman', Times, serif; color: green;">Check <span style="color:blue;">Our Gallery</span></p>
+      </div>
+
+      <div class="gallery-slider swiper">
+        <div class="swiper-wrapper align-items-center">
+          <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+              href="/static/img/menu1.jpg"><img src="/static/img/menu1.jpg" class="img-fluid" alt=""></a>
+          </div>
+          <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+              href="/static/img/menu2.jpg"><img src="/static/img/menu2.jpg" class="img-fluid" alt=""></a>
+          </div>
+          <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+              href="/static/img/menu00.webp"><img src="/static/img/menu00.webp" class="img-fluid" alt=""></a>
+          </div>
+          <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+              href="/static/img/menu4.jpg"><img src="/static/img/menu4.jpg" class="img-fluid" alt=""></a>
+          </div>
+          <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+              href="/static/img/menu8.jpg"><img src="/static/img/menu8.jpg" class="img-fluid" alt=""></a>
+          </div>
+          <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+              href="/static/img/menu7.jpg"><img src="/static/img/menu7.jpg" class="img-fluid" alt=""></a>
+          </div>
+          <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+              href="/static/img/menu9.jpg"><img src="/static/img/menu9.jpg" class="img-fluid" alt=""></a>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+    </div>
+  </section>
+    
+{% endblock %}
+    

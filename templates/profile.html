@@ -3,46 +3,49 @@
 {% block content %}
 
 <section class="vh-100" style="background-color: #f4f5f7;">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col col-lg-6 mb-4 mb-lg-0">
-                <div class="card mb-3" style="border-radius: .5rem; ">
-                    <div class="row g-0" style="border: solid black;">
+    <div class="container py-5">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-lg-6 mb-4 mb-lg-0">
+                <div class="card mb-3" style="border-radius: .5rem;">
+                    <div class="row g-0 border">
                         <div class="col-md-4 gradient-custom text-center text-white"
                             style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                             <img src="{{ profile.image.url }}" alt="Avatar" class="img-fluid"
                                 style="width: 80px; margin-top: 49%; height: 100px;" />
-                            <h5 class="mt-3" style="color: black;">{{user.username}} </h5>
-                            <a class="btn btn-primary" style="margin-top: 37%;" href="{% url 'editprofile' %}">Edit your profile</a>
-                                <a class="btn btn-primary mt-4" href="{% url 'subscription_taken' %}">Your Subscriptions</a>
+                            <h5 class="mt-3" style="color: black;">{{user.username}}</h5>
+                            <a class="btn btn-primary mt-3 d-md-none" href="{% url 'editprofile' %}">Edit your
+                                profile</a>
+                            <a class="btn btn-primary mt-3 d-md-none" href="{% url 'subscription_taken' %}">Your
+                                Subscriptions</a>
                         </div>
                         <div class="col-md-8">
-                            <div class="card-body p-4" style=" border-left: 1px solid black;
-                            height: 500px;">
+                            <div class="card-body p-4 border-left">
                                 <h6>Information</h6>
                                 <hr class="mt-0 mb-4">
-                                <div class="row pt-1">
-                                    <div class="mb-3">
-                                        <h6>About</h6>
-                                        <p class="text-muted">{{profile.about}}</p>
-                                    </div>
+                                <div class="mb-3">
+                                    <h6>About</h6>
+                                    <p class="text-muted">{{profile.about}}</p>
                                 </div>
-                                <div class="row pt-1">
-                                    <div class="mb-3">
-                                        <h6>Address</h6>
-                                        <p class="text-muted">{{profile.address}}</p>
-                                    </div>
+                                <div class="mb-3">
+                                    <h6>Address</h6>
+                                    <p class="text-muted">{{profile.address}}</p>
                                 </div>
-                                <div class="row pt-1">
-                                    <div class="mb-3">
-                                        <h6>Email</h6>
-                                        <p class="text-muted">{{profile.email}}</p>
-                                    </div>
+                                <div class="mb-3">
+                                    <h6>Email</h6>
+                                    <p class="text-muted">{{profile.email}}</p>
                                 </div>
-                                <div class="row pt-1">
-                                    <div class="mb-3">
-                                        <h6>Phone</h6>
-                                        <p class="text-muted">{{profile.phone}}</p>
+                                <div class="mb-3">
+                                    <h6>Phone</h6>
+                                    <p class="text-muted">{{profile.phone}}</p>
+                                </div>
+                                <div class="row d-none d-md-flex justify-content-end">
+                                    <div class="col">
+                                        <a class="btn btn-primary mt-4" href="{% url 'editprofile' %}">Edit your
+                                            profile</a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="btn btn-primary mt-4" href="{% url 'subscription_taken' %}">Your
+                                            Subscriptions</a>
                                     </div>
                                 </div>
                             </div>
@@ -53,6 +56,7 @@
         </div>
     </div>
 </section>
+
 {% endblock content %}
 
 {% block css %}

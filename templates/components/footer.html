@@ -1,14 +1,14 @@
 <footer id="footer" class="footer">
   
-  <div class="container">
+  <div class="container" style="font-family: 'Times New Roman', Times, serif">
     <div class="row gy-3">
       <div class="col-lg-3 col-md-6 d-flex">
         <i class="bi bi-geo-alt icon"></i>
         <div>
-          <h4>Address</h4>
+          <h4 style="font-family: 'Times New Roman', Times, serif;">Address</h4>
           <p>
-            Gomtinagar , <br>
-            Lucknow <br>
+            Hazratganj ,<br>
+            Lucknow , India<br>
           </p>
         </div>
 
@@ -17,7 +17,7 @@
       <div class="col-lg-3 col-md-6 footer-links d-flex">
         <i class="bi bi-telephone icon"></i>
         <div>
-          <h4>Reservations</h4>
+          <h4 style="font-family: 'Times New Roman', Times, serif;">Contact</h4>
           <p>
             <strong>Phone:</strong> +1 5589 55488 55<br>
             <strong>Email:</strong> flora@gmail.com<br>
@@ -28,16 +28,16 @@
       <div class="col-lg-3 col-md-6 footer-links d-flex">
         <i class="bi bi-clock icon"></i>
         <div>
-          <h4>Opening Hours</h4>
+          <h4 style="font-family: 'Times New Roman', Times, serif;">Opening Hours</h4>
           <p>
             <strong>Mon-Sat: 10AM</strong> to 7PM<br>
-            Sunday: Closed
+            Closed on Sunday
           </p>
         </div>
       </div>
 
       <div class="col-lg-3 col-md-6 footer-links">
-        <h4>Follow Us</h4>
+        <h4 style="font-family: 'Times New Roman', Times, serif;">Follow Us here</h4>
         <div class="social-links d-flex">
           <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
           <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -46,11 +46,13 @@
         </div>
       </div>
 
-    </div>
-  </div>
+      <div class="d-flex justify-content-between" style="width: 70%; margin-left: 14%;">
+        <h4><a class="text-info" href="{% url 'feedback' %}" style="font-family: 'Times New Roman', Times, serif;">Send your Feedback here</a></h4>
+        <h4><a class="text-warning" href="{% url 'vregister' %}" style="font-family: 'Times New Roman', Times, serif">Vendor Login</a></h4>
+        <h4><a class="text-danger" href="{% url 'admin:index' %}" style="font-family: 'Times New Roman', Times, serif">Admin Login</a></h4>
+      </div>
 
-  <div>
-    <h4 ><a href="{% url 'feedback' %}">Send your Feedback here</a></h4>
+    </div>
   </div>
 
 </footer>

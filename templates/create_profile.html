@@ -1,15 +1,17 @@
 {% extends 'layout/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<section class="my-4">
+<section class="my-4"  style="font-family: Georgia, 'Times New Roman', Times, serif;">
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center" style="background-color: mediumaquamarine;">
             <div class="col-6">
-                <h2 class="my-5">Create profile</h2>
+                <h2 class="my-5"  style="font-family: 'Times New Roman', Times, serif; text-align: center; color: whitesmoke;">Create Your Profile</h2>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 </form>
                 <br>
             </div>

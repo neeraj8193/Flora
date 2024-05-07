@@ -37,21 +37,21 @@
 
 
   {% include 'components/header.html' %}
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero d-flex align-items-center section-bg">
+  <section id="hero" class="hero d-flex align-items-center section-bg"
+    style="font-family: Georgia, 'Times New Roman', Times, serif">
     <div class="container">
       <div class="row justify-content-between gy-5">
         <div
           class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
-          <h2 data-aos="fade-up">Welcome to Flora <br> Your Eco-Friendly Plant Companion<br></h2>
+          <h2 data-aos="fade-up" style="font-family: 'Times New Roman', Times, serif;">Welcome to Flora: <br> Your
+            Eco-Friendly Plant Companion<br></h2>
           <p data-aos="fade-up" data-aos-delay="100">
             Transform your space with Flora, your one-stop platform for premium flower pots tailored for corporate
             offices and homes. Our subscription-based services ensure hassle-free plant care, connecting you with local
             nurseries, gardeners, and florists for a seamless experience. Experience the beauty of nature, effortlessly.
           </p>
           <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-            <a href="#book-a-table" class="btn-book-a-table">Take a Subscription</a>
+            <a href="{% url 'subscription_create' %}" class="btn-book-a-table">Take a Subscription</a>
           </div>
         </div>
         <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
@@ -60,111 +60,7 @@
       </div>
     </div>
   </section>
-  <!-- End Hero Section -->
 
-    
-  <main id="main">
-    
-    
-    <!-- ======= Book A Table Section ======= -->
-    <section id="book-a-table" class="book-a-table">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-header">
-          <h2>Take a Subscription</h2>
-          <p>For Plants <span>Health and Maintenance</span></p>
-        </div>
-
-        <div class="row g-0">
-
-          <div class="col-lg-4 reservation-img" style="background-image: url(/static/img/subscription.jpg);"
-            data-aos="zoom-out" data-aos-delay="200"></div>
-
-          <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
-            <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up"
-              data-aos-delay="100">
-              <div class="row gy-4">
-                <div class="col-lg-4 col-md-6">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
-                    data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                  <div class="validate"></div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
-                    data-rule="email" data-msg="Please enter a valid email">
-                  <div class="validate"></div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                  <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone"
-                    data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                  <div class="validate"></div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                  <input type="text" name="date" class="form-control" id="date" placeholder="Date" data-rule="minlen:4"
-                    data-msg="Please enter at least 4 chars">
-                  <div class="validate"></div>
-                </div>
-
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Address"></textarea>
-                <div class="validate"></div>
-              </div>
-              <div class="mb-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your request was sent. We will call back or send an Email to confirm
-                  you. Thank you! </div>
-              </div>
-              <div class="text-center"><button type="submit">Confirm Subscription</button></div>
-            </form>
-          </div><!-- End Reservation Form -->
-
-        </div>
-
-      </div>
-    </section><!-- End Book A Table Section -->
-
-    <!-- ======= Gallery Section ======= -->
-    <section id="gallery" class="gallery section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-header">
-          <h2>gallery</h2>
-          <p>Check <span>Our Gallery</span></p>
-        </div>
-
-        <div class="gallery-slider swiper">
-          <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
-                href="/static/img/menu1.jpg"><img src="/static/img/menu1.jpg" class="img-fluid" alt=""></a>
-            </div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
-                href="/static/img/menu2.jpg"><img src="/static/img/menu2.jpg" class="img-fluid" alt=""></a>
-            </div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
-                href="/static/img/menu3.jpg"><img src="/static/img/menu3.jpg" class="img-fluid" alt=""></a>
-            </div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
-                href="/static/img/menu4.jpg"><img src="/static/img/menu4.jpg" class="img-fluid" alt=""></a>
-            </div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
-                href="/static/img/menu8.jpg"><img src="/static/img/menu8.jpg" class="img-fluid" alt=""></a>
-            </div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
-                href="/static/img/menu7.jpg"><img src="/static/img/menu7.jpg" class="img-fluid" alt=""></a>
-            </div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
-                href="/static/img/menu9.jpg"><img src="/static/img/menu9.jpg" class="img-fluid" alt=""></a>
-            </div>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section><!-- End Gallery Section -->
-
-  </main><!-- End #main -->
 
   {% include 'components/footer.html' %}
 

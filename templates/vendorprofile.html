@@ -1,8 +1,11 @@
 {% extends 'layout/base.html' %}
 
-
+{% block Flora %}
+  Vendor Profile
+{% endblock %}
+  
 {% block content %}
-<section class="my-4" style="background-color: #eee;">
+<section style="background-color: dodgerblue; font-family: 'Times New Roman', Times, serif;">
   <div class="container py-5">
 
 
@@ -11,9 +14,9 @@
         <div class="card mb-4">
           <div class="card-body text-center">
             <img src="{{ profile.image.url }}" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 150px;">
+              class="rounded-circle img-fluid" style="width: 120px;">
             <h5 class="my-3">{{user.username}}</h5>
-            <p><a href="{% url 'editvendorprofile' %}">Edit your profile</a></p>
+            <p><a href="{% url 'editvendorprofile' %}" style="color: blue;">Edit your profile</a></p>
           </div>
         </div>
 
@@ -69,6 +72,10 @@
         </div>
 
       </div>
+    </div>
+
+    <div>
+      <button class="w-100 rounded btn btn-light mb-2"> <a style="color: green;" href="{% url 'admin:index' %}">See Details From Here</a></button>
     </div>
   </div>
 </section>

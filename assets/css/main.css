@@ -1,9 +1,3 @@
-:root {
-  --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-primary: "Amatic SC", sans-serif;
-  --font-secondary: "Inter", sans-serif;
-}
-
 /* Colors */
 :root {
   --color-default: #212529;
@@ -20,7 +14,6 @@
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: var(--font-default);
   color: var(--color-default);
 }
 
@@ -34,14 +27,7 @@ a:hover {
   text-decoration: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-secondary);
-}
+
 
 /*--------------------------------------------------------------
 # Sections & Section Header
@@ -70,14 +56,14 @@ section {
   padding: 0;
   color: #7f7f90;
   text-transform: uppercase;
-  font-family: var(--font-default);
+  
 }
 
 .section-header p {
   margin: 0;
   font-size: 48px;
   font-weight: 400;
-  font-family: var(--font-primary);
+ 
 }
 
 .section-header p span {
@@ -262,7 +248,7 @@ section {
   font-weight: 700;
   color: #000;
   margin: 0;
-  font-family: var(--font-secondary);
+  
 }
 
 .header .logo h1 span {
@@ -317,7 +303,6 @@ section {
     align-items: center;
     justify-content: space-between;
     padding: 0 3px;
-    font-family: var(--font-secondary);
     font-size: 16px;
     font-weight: 600;
     color: #7f7f90;
@@ -468,7 +453,6 @@ section {
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    font-family: var(--font-secondary);
     border-bottom: 2px solid rgba(255, 255, 255, 0.8);
     font-size: 16px;
     font-weight: 600;
@@ -560,7 +544,6 @@ section {
   font-weight: 700;
   font-size: 36px;
   margin-bottom: 30px;
-  font-family: var(--font-secondary);
 }
 
 .about .call-us {
@@ -577,7 +560,6 @@ section {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 5px;
-  font-family: var(--font-default);
 }
 
 .about .call-us p {
@@ -686,122 +668,6 @@ section {
     opacity: 0;
   }
 }
-
-/*--------------------------------------------------------------
-# Why Us Section
---------------------------------------------------------------*/
-.why-us .why-box {
-  padding: 30px;
-  background: var(--color-primary);
-  color: #fff;
-}
-
-.why-us .why-box h3 {
-  font-weight: 700;
-  font-size: 34px;
-  margin-bottom: 30px;
-}
-
-.why-us .why-box p {
-  margin-bottom: 30px;
-}
-
-.why-us .why-box .more-btn {
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.3);
-  padding: 6px 30px 8px 30px;
-  color: #fff;
-  border-radius: 50px;
-  transition: all ease-in-out 0.4s;
-}
-
-.why-us .why-box .more-btn i {
-  font-size: 14px;
-}
-
-.why-us .why-box .more-btn:hover {
-  color: var(--color-primary);
-  background: #fff;
-}
-
-.why-us .icon-box {
-  text-align: center;
-  background: #fff;
-  padding: 40px 30px;
-  width: 100%;
-  height: 100%;
-  border: 1px solid rgba(55, 55, 63, 0.1);
-  transition: 0.3s;
-}
-
-.why-us .icon-box i {
-  color: var(--color-primary);
-  margin-bottom: 30px;
-  font-size: 32px;
-  margin-bottom: 30px;
-  background: rgba(206, 18, 18, 0.1);
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 64px;
-}
-
-.why-us .icon-box h4 {
-  font-size: 20px;
-  font-weight: 400;
-  margin: 0 0 30px 0;
-  font-family: var(--font-secondary);
-}
-
-.why-us .icon-box p {
-  font-size: 15px;
-  color: #6c757d;
-}
-
-@media (min-width: 1200px) {
-  .why-us .icon-box:hover {
-    transform: scale(1.1);
-  }
-}
-
-/*--------------------------------------------------------------
-# Stats Counter Section
---------------------------------------------------------------*/
-.stats-counter {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/stats-bg.jpg") center center;
-  background-size: cover;
-  padding: 100px 0;
-}
-
-@media (min-width: 1365px) {
-  .stats-counter {
-    background-attachment: fixed;
-  }
-}
-
-.stats-counter .stats-item {
-  padding: 30px;
-  width: 100%;
-}
-
-.stats-counter .stats-item span {
-  font-size: 48px;
-  display: block;
-  color: #fff;
-  font-weight: 700;
-}
-
-.stats-counter .stats-item p {
-  padding: 0;
-  margin: 0;
-  font-family: var(--font-secondary);
-  font-size: 16px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.6);
-}
-
 /*--------------------------------------------------------------
 # Menu Section
 --------------------------------------------------------------*/
@@ -903,256 +769,6 @@ section {
   color: var(--color-primary);
 }
 
-/*--------------------------------------------------------------
-# Testimonials Section
---------------------------------------------------------------*/
-.testimonials .section-header {
-  margin-bottom: 40px;
-}
-
-.testimonials .testimonials-carousel,
-.testimonials .testimonials-slider {
-  overflow: hidden;
-}
-
-.testimonials .testimonial-item .testimonial-content {
-  border-left: 3px solid var(--color-primary);
-  padding-left: 30px;
-}
-
-.testimonials .testimonial-item .testimonial-img {
-  border-radius: 50%;
-  border: 4px solid #fff;
-  margin: 0 auto;
-}
-
-.testimonials .testimonial-item h3 {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 10px 0 5px 0;
-  color: var(--color-default);
-  font-family: var(--font-secondary);
-}
-
-.testimonials .testimonial-item h4 {
-  font-size: 14px;
-  color: #6c757d;
-  margin: 0 0 10px 0;
-  font-family: var(--font-secondary);
-}
-
-.testimonials .testimonial-item .stars i {
-  color: #ffc107;
-  margin: 0 1px;
-}
-
-.testimonials .testimonial-item .quote-icon-left,
-.testimonials .testimonial-item .quote-icon-right {
-  color: #f05656;
-  font-size: 26px;
-  line-height: 0;
-}
-
-.testimonials .testimonial-item .quote-icon-left {
-  display: inline-block;
-  left: -5px;
-  position: relative;
-}
-
-.testimonials .testimonial-item .quote-icon-right {
-  display: inline-block;
-  right: -5px;
-  position: relative;
-  top: 10px;
-  transform: scale(-1, -1);
-}
-
-.testimonials .testimonial-item p {
-  font-style: italic;
-}
-
-.testimonials .swiper-pagination {
-  margin-top: 40px;
-  position: relative;
-}
-
-.testimonials .swiper-pagination .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  background-color: #d1d1d7;
-  opacity: 1;
-}
-
-.testimonials .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--color-primary);
-}
-
-/*--------------------------------------------------------------
-# Events Section
---------------------------------------------------------------*/
-.events .container-fluid {
-  padding: 0;
-}
-
-.events .event-item {
-  background-size: cover;
-  background-position: cente;
-  min-height: 600px;
-  padding: 30px;
-}
-
-@media (max-width: 575px) {
-  .events .event-item {
-    min-height: 500px;
-  }
-}
-
-.events .event-item:before {
-  content: "";
-  background: rgba(0, 0, 0, 0.6);
-  position: absolute;
-  inset: 0;
-}
-
-.events .event-item h3 {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 5px;
-  color: #fff;
-  position: relative;
-}
-
-.events .event-item .price {
-  color: #fff;
-  border-bottom: 2px solid var(--color-primary);
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 15px;
-  position: relative;
-}
-
-.events .event-item .description {
-  margin-bottom: 0;
-  color: rgba(255, 255, 255, 0.9);
-  position: relative;
-}
-
-@media (min-width: 1200px) {
-  .events .swiper-slide-active+.swiper-slide {
-    border-left: 1px solid rgba(255, 255, 255, 0.5);
-    border-right: 1px solid rgba(255, 255, 255, 0.5);
-    z-index: 1;
-  }
-}
-
-.events .swiper-pagination {
-  margin-top: 20px;
-  position: relative;
-}
-
-.events .swiper-pagination .swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
-  background-color: #d1d1d7;
-  opacity: 1;
-}
-
-.events .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--color-primary);
-}
-
-/*--------------------------------------------------------------
-# Chefs Section
---------------------------------------------------------------*/
-.chefs .chef-member {
-  overflow: hidden;
-  text-align: center;
-  border-radius: 5px;
-  background: #fff;
-  box-shadow: 0px 0 30px rgba(55, 55, 63, 0.08);
-  transition: 0.3s;
-}
-
-.chefs .chef-member .member-img {
-  position: relative;
-  overflow: hidden;
-}
-
-.chefs .chef-member .member-img:after {
-  position: absolute;
-  content: "";
-  left: 0;
-  bottom: 0;
-  height: 100%;
-  width: 100%;
-  background: url(../img/team-shape.svg) no-repeat center bottom;
-  background-size: contain;
-  z-index: 1;
-}
-
-.chefs .chef-member .social {
-  position: absolute;
-  right: -100%;
-  top: 30px;
-  opacity: 0;
-  border-radius: 4px;
-  transition: 0.5s;
-  background: rgba(255, 255, 255, 0.3);
-  z-index: 2;
-}
-
-.chefs .chef-member .social a {
-  transition: color 0.3s;
-  color: rgba(55, 55, 63, 0.4);
-  margin: 15px 12px;
-  display: block;
-  line-height: 0;
-  text-align: center;
-}
-
-.chefs .chef-member .social a:hover {
-  color: rgba(55, 55, 63, 0.9);
-}
-
-.chefs .chef-member .social i {
-  font-size: 18px;
-}
-
-.chefs .chef-member .member-info {
-  padding: 10px 15px 20px 15px;
-}
-
-.chefs .chef-member .member-info h4 {
-  font-weight: 700;
-  margin-bottom: 5px;
-  font-size: 20px;
-  color: var(--color-secondary);
-}
-
-.chefs .chef-member .member-info span {
-  display: block;
-  font-size: 14px;
-  font-weight: 400;
-  color: rgba(33, 37, 41, 0.4);
-}
-
-.chefs .chef-member .member-info p {
-  font-style: italic;
-  font-size: 14px;
-  padding-top: 15px;
-  line-height: 26px;
-  color: rgba(33, 37, 41, 0.7);
-}
-
-.chefs .chef-member:hover {
-  transform: scale(1.08);
-  box-shadow: 0px 0 30px rgba(55, 55, 63, 0.15);
-}
-
-.chefs .chef-member:hover .social {
-  right: 8px;
-  opacity: 1;
-}
 
 /*--------------------------------------------------------------
 # Book A Table Section
@@ -1483,7 +1099,6 @@ section {
   font-weight: 700;
   margin-bottom: 20px;
   color: var(--color-secondary);
-  font-family: var(--font-primary);
 }
 
 .hero h2 span {

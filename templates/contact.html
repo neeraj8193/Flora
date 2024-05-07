@@ -2,23 +2,23 @@
 {% load static %}
 
 {% block Flora %}
-Contact
+Contact 
 {% endblock %}
 
 {% block content %}
-<section id="contact" class="contact my-4">
+<section id="contact" class="contact my-4" style="font-family: Georgia, 'Times New Roman', Times, serif;">
     <div class="container" data-aos="fade-up">
 
       <div class="section-header">
-        <h2>Contact</h2>
-        <p><span>For Any Help Contact us</span></p>
+        <h2 style="font-family: 'Times New Roman', Times, serif;">Contact</h2>
+        <p style="font-family: 'Times New Roman', Times, serif; color: blue;">For Any Help <span style="color: green;">Contact Us</span></p>
       </div>
 
       <div class="mb-3">
         <iframe style="border:0; width: 100%; height: 350px;"
-          src="https://www.google.com/maps/dir//Lower+Ground+Floor,+Raja+Ram+Kumar+Plaza,+opp.+Tej+Kumar+Plaza,+behind+Motimahal+Restaurant,+Sushanpura,+Hazratganj,+Lucknow,+Uttar+Pradesh+226001/@26.846782,80.8622571,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x399bfd07c3c15643:0x867bb0de72c4c460!2m2!1d80.9446586!2d26.8468059?entry=ttu"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
           frameborder="0" allowfullscreen></iframe>
-      </div><!-- End Google Maps -->
+      </div>
 
       <div class="row gy-4">
 
@@ -26,7 +26,7 @@ Contact
           <div class="info-item  d-flex align-items-center">
             <i class="icon bi bi-map flex-shrink-0"></i>
             <div>
-              <h3>Our Address</h3>
+              <h3 style="font-family: 'Times New Roman', Times, serif;">Our Address</h3>
               <p>Gomtinagar , Lucknow </p>
             </div>
           </div>
@@ -36,7 +36,7 @@ Contact
           <div class="info-item d-flex align-items-center">
             <i class="icon bi bi-envelope flex-shrink-0"></i>
             <div>
-              <h3>Our Email</h3>
+              <h3 style="font-family: 'Times New Roman', Times, serif;">Our Email</h3>
               <p>Flora@gmail.com</p>
             </div>
           </div>
@@ -46,7 +46,7 @@ Contact
           <div class="info-item  d-flex align-items-center">
             <i class="icon bi bi-telephone flex-shrink-0"></i>
             <div>
-              <h3>Call Us</h3>
+              <h3 style="font-family: 'Times New Roman', Times, serif;">Call Us</h3>
               <p>+1 7789 55499 11</p>
             </div>
           </div>
@@ -56,9 +56,9 @@ Contact
           <div class="info-item  d-flex align-items-center">
             <i class="icon bi bi-share flex-shrink-0"></i>
             <div>
-              <h3>Opening Hours</h3>
+              <h3 style="font-family: 'Times New Roman', Times, serif;">Opening Hours</h3>
               <div><strong>Mon to Sat - </strong> 10AM - 7PM;
-                <strong>Sunday - </strong> Closed
+                <strong>Closed </strong> on Sunday
               </div>
             </div>
           </div>
@@ -66,7 +66,7 @@ Contact
 
       </div>
 
-      <form method="post" class="php-email-form p-3 p-md-4">
+      <form method="post" class="php-email-form p-3 p-md-4" style="background-color: gainsboro;">
         {% csrf_token %}
         <div class="row">
           <div class="col-xl-6 form-group">

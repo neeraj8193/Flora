@@ -30,6 +30,9 @@ urlpatterns = [
     
     path('', index, name='home'),
     path('contact', contact_details , name='contact'),
+    path('maintenance/Form', maintenance , name='maintenance'),
+    path('gallery', gallery_details , name='gallery'),
+
     path('menu', menu_details , name='menu'),
     path('about', about_details , name='about'),
     path('profile/view', profile , name='profile'),

@@ -22,8 +22,14 @@ from django.core.mail import send_mail
 def index(request):
     return render(request,'index.html')
 
+def gallery_details(request):
+    return render(request,'gallery.html')
+
 def about_details(request):
     return render(request,'about.html')
+
+def maintenance(request):
+    return render(request,'maintenanceform.html')
 
 def menu_details(request):
     return render(request,'menu.html', {
