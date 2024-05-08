@@ -16,6 +16,7 @@ import dotenv
 import stripe
 import os
 from django.conf import settings
+import json
 from django.core.mail import send_mail
 
 
@@ -35,9 +36,6 @@ def menu_details(request):
     return render(request,'menu.html', {
         'flowers':FlowersOption.objects.all(),
     })
-
-def selected_flowers_list(request):
-    return render(request , 'selected_flowers_list.html' )
 
 def contact_details(request):
     if request.method == 'POST' :
@@ -131,11 +129,19 @@ def subscription_create(request):
 
 
 def subscription_details(request):
-    return render(request,'subscription_list.html')
+    # load uses subscriptions, that have completed payment
+    subscriptions = Subscription.objects.filter(user=request.user, is_payment_done=True)
+    return render(request,'subscription_list.html', {
+        'subscriptions':subscriptions,
+    })
 
-def subscription_item_details(request):
-    return render(request,'subscription_list_items.html')
-
+def subscription_item_details(request, id):
+    subscription = Subscription.objects.get(id=id)
+    flowers = SelectedFlowers.objects.filter(subscription_id=id)
+    return render(request,'subscription_list_items.html', {
+        'subscription':subscription,
+        'flowers':flowers,
+    })
 
 @login_required
 def select_flowers(request):
@@ -164,15 +170,16 @@ def sub_new_payment(request):
     subscription = Subscription.objects.get(id=sub_id)
     today = datetime.datetime.now().date()
     added_flowers = SelectedFlowers.objects.filter(subscription_id=sub_id)
-    checkout_id = create_checkout_session(request)
-    print(checkout_id)
+    # checkout_id = create_checkout_session(request)
+    # print(checkout_id)
     return render(request,'payment_new.html',{
         'subscription':subscription,
         'selected_flowers':added_flowers,
-        'checkout_id':checkout_id,
+        # 'checkout_id':checkout_id,
         'spk':stripe_public_key,
     })
 
+from django.http import JsonResponse
 @csrf_exempt
 def create_checkout_session(request):
     base_url = request.build_absolute_uri('/')[:-1]
@@ -182,6 +189,8 @@ def create_checkout_session(request):
     subscription = Subscription.objects.get(id=sub_id)
     added_flowers = SelectedFlowers.objects.filter(subscription_id=sub_id)
     user = request.user
+    profile = Profile.objects.get(user=user)
+    email = profile.email
     currency = 'inr'
     print('info')
     print(f'sub_id: {sub_id}')
@@ -190,14 +199,14 @@ def create_checkout_session(request):
     print(f'user: {user}')
     print(f'currency: {currency}')
 
-
-    total_price = 0
-    for flower in added_flowers:
-        price = flower.flower.price
-        qty  = flower.quantity
-        total_price += price * qty
-
+    # get total_price from json data posted
+    
+    body = json.loads(request.body)
+    # print(f'body: {body}')
+    total_price = float(body.get('total_price'))
     print(f'total_price: {total_price}')
+    # store in session
+    request.session['total_price'] = total_price
                
     checkout_session = stripe.checkout.Session.create(
         payment_method_types=['card'],
@@ -218,20 +227,22 @@ def create_checkout_session(request):
                 
             },
         ],
-        customer_email=user.email,
+        customer_email= email or user.email,
         billing_address_collection='required',
     )
-    return checkout_session.id
+    return JsonResponse({'id': checkout_session.id})
 
 def success(request):
     sub_id = request.session.get('subscription_id')
     subscription = Subscription.objects.get(id=sub_id)
     subscription.is_payment_done = True
+    subscription.price = request.session.get('total_price')
     subscription.save()
     # clear selected flowers
     SelectedFlowers.objects.filter(subscription_id=sub_id).delete()
     # clear subscription id from session
     del request.session['subscription_id']
+    del request.session['total_price']
     messages.success(request,"Payment successful!")
     return render(request,'success.html', {
         'subscription':subscription,
@@ -240,7 +251,7 @@ def success(request):
 
 def cancel(request):
     messages.error(request,"Payment failed!")
-    return request('cancel.html')
+    return render(request, 'cancel.html')   
 
 @login_required
 def profile(request):

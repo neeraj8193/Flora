@@ -10,7 +10,6 @@ Create new subscription
 <script src="https://js.stripe.com/v3/"></script>
 {% endblock css %}
 
-
 {% block content %}
 
 <section class="section-content padding-y my-4">
@@ -45,9 +44,8 @@ Create new subscription
                                     </figure>
                                 </td>
                                 <td>
-                                    <select class="form-control">
-                                        <option>{{item.quantity}}</option>
-                                    </select>
+                                    <input type="number" class="form-control qty" value="{{item.quantity}}" min="1"
+                                        max="500" data-id="{{item.flower.id}}" data-price="{{item.flower.price}}">
                                 </td>
                                 <td>
                                     <div class="price-wrap">
@@ -79,19 +77,20 @@ Create new subscription
                     <div class="card-body">
                         <dl class="dlist-align">
                             <dt>Total price:</dt>
-                            <dd class="text-right">USD 568</dd>
+                            <dd class="text-right" id="totalprice"></dd>
                         </dl>
                         <dl class="dlist-align">
                             <dt>Discount:</dt>
-                            <dd class="text-right">USD 658</dd>
+                            <dd class="text-right" id="discount">3%</dd>
                         </dl>
                         <dl class="dlist-align">
                             <dt>Total:</dt>
-                            <dd class="text-right  h5"><strong>$1,650</strong></dd>
+                            <dd class="text-right  h5"><strong id="finalprice">0.00</strong></dd>
                         </dl>
                         <hr>
                         <div class="card-body border-top">
-                            <a href="#" class="btn btn-danger pay">Proceed Payment <i class="fa fa-chevron-right"></i></a>
+                            <a href="#" class="btn btn-danger pay">Proceed Payment <i
+                                    class="fa fa-chevron-right"></i></a>
                         </div>
 
                     </div> <!-- card-body.// -->
@@ -105,20 +104,67 @@ Create new subscription
 
 
 {% block js %}
-{% if checkout_id %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>
-    var stripe = Stripe('{{spk}}');
-    var checkoutId = '{{checkout_id}}';
-    var paymnetBtn = document.querySelector('.pay');
-    paymnetBtn.addEventListener('click', function () {
-        stripe.redirectToCheckout({
-            sessionId: checkoutId
-        }).then(function (result) {
-            console.log(result);
+    $(document).ready(function () {
+        var total = 0;
+        var discount = $('#discount').text().replace('%', '');
+        var finalprice = 0;
+        $('.qty').each(function () {
+            var price = $(this).data('price');
+            var qty = $(this).val();
+            total += price * qty;
+        });
+        $('#totalprice').text('Rs ' + total);
+        finalprice = total - (total * discount / 100);
+        $('#finalprice').text('Rs ' + finalprice);
+        $('#discount').text(discount + '%');
+        // update price on qty change
+        $('.qty').on('change', function () {
+            var total = 0;
+            var discount = $('#discount').text().replace('%', '');
+            var finalprice = 0;
+            $('.qty').each(function () {
+                var price = $(this).data('price');
+                var qty = $(this).val();
+                // alert(qty);
+                total += price * qty;
+            });
+            $('#totalprice').text('Rs ' + total);
+            finalprice = total - (total * discount / 100);
+            $('#finalprice').text('Rs ' + finalprice);
+            $('#discount').text(discount + '%');
         });
     });
 </script>
-{% else %}
-
-{% endif %}
+<script>
+    var stripe = Stripe('{{spk}}');
+    // var checkoutId = '{{checkout_id}}';
+    var paymnetBtn = document.querySelector('.pay');
+    paymnetBtn.addEventListener('click', function () {
+        // disable button and display spinner inplace of text
+        paymnetBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...';
+        paymnetBtn.disabled = true;
+        // get checkout id by post total_price 
+        var total_price = $('#finalprice').text().replace('Rs ', '');
+        fetch('{% url "checkout_session_create" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{csrf_token}}'
+            },
+            body: JSON.stringify({
+                total_price: total_price
+            })
+        }).then(function (response) {
+            return response.json();
+        }).then(function (session) {
+            return stripe.redirectToCheckout({
+                sessionId: session.id
+            });
+        })
+        
+    });
+</script>
 {% endblock js %}

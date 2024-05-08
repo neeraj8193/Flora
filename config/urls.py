@@ -46,7 +46,6 @@ urlpatterns = [
     path('vendorprofile/edit', edit_vendorprofile , name='editvendorprofile'),
     path('vendorprofile/create', create_vendorprofile , name='create_vendorprofile'),
 
-    path('selected/flowers', selected_flowers_list , name='selected/flowers'),
 
     path('login/customer', customer_login_view, name='clogin'),
     path('register/customer', customer_register_view, name='cregister'),
@@ -64,16 +63,17 @@ urlpatterns = [
 
 
     path('subscription/taten',subscription_details, name='subscription_taken'),
-    path('subscription/taken/list',subscription_item_details, name='subscription_list'),
+    path('subscription/<int:id>/detail',subscription_item_details, name='subscription_details'),
     path('subscription/create',subscription_create, name='subscription_create'),
     path('select/flowers',select_flowers, name='select_flowers'),
     path('subscription/payment',sub_new_payment, name='payment_new'),
+    path('checkout/session/create',create_checkout_session, name='checkout_session_create'),
     path('address/create',address_create, name='address_create'),
     path('feedback', feedback_details, name='feedback'),
 
     # success url
     path('success/', success, name='success'),
-    path('cancel', cancel, name='cancel'),
+    path('cancel/', cancel, name='cancel'),
 ]
 
 if settings.DEBUG:
