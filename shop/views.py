@@ -237,6 +237,7 @@ def success(request):
         'subscription':subscription,
     })
 
+
 def cancel(request):
     messages.error(request,"Payment failed!")
     return request('cancel.html')

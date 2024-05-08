@@ -151,11 +151,12 @@ LOGIN_URL = 'clogin'
 
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'mail.digipodium.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "neerajgupta6003@digipodium.com	"
+EMAIL_HOST_USER = "neerajgupta6003@digipodium.com"
 EMAIL_HOST_PASSWORD = "digi60032k23"
+
 
 # stripe keys
 STRIPE_PK = os.getenv('stripe_pk')
