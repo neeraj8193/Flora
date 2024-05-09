@@ -6,8 +6,8 @@ Take Subscription
 {% endblock %}
 
 {% block content %}
-<section>
-    <div class="container my-5">
+<section style="background-color: lightgreen;">
+    <div class="container my-5" style="font-family: Georgia, 'Times New Roman', Times, serif;">
         <form action="" method="post">
             {% csrf_token %}
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
@@ -29,21 +29,11 @@ Take Subscription
                             </div>
                             <p class="card-text">{{item.description|truncatewords:15}}</p>
 
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="mb-2">
-                                    <h4>Quantity</h4>
-                                </div>
-                                <div class="btn-group mb-3">
-                                    <div class="form-check">
-                                        <input type="number" class="form-control" value="1" aria-label="Quantity"
-                                            min="1" max="100">
-                                    </div>
-                                </div>
-                            </div>
+                            
 
                             <label for="item_{{item.id}}" class="w-100 ">
                                 <div class="d-flex align-items-center ">
-                                    <div class="">
+                                    <div style="font-weight: 600;">
                                         Add to Subscription
                                     </div>
                                     <div class="ms-auto">

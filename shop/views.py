@@ -79,7 +79,7 @@ def address_create(request):
             address.user = request.user
             address.save()
             messages.success(request,"Address added successfully !")
-            return redirect('address_create')
+            return redirect('subscription_create')
         else:
             messages.error(request,"Please fill all the fields correctly!")
     else:
@@ -135,6 +135,7 @@ def subscription_details(request):
         'subscriptions':subscriptions,
     })
 
+
 def subscription_item_details(request, id):
     subscription = Subscription.objects.get(id=id)
     flowers = SelectedFlowers.objects.filter(subscription_id=id)
@@ -142,6 +143,7 @@ def subscription_item_details(request, id):
         'subscription':subscription,
         'flowers':flowers,
     })
+
 
 @login_required
 def select_flowers(request):

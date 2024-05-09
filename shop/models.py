@@ -100,10 +100,10 @@ class Vendor(models.Model):
         return self.name
 
 class Profile(models.Model):
-    email = models.EmailField(default='user@gmail.com')
-    phone = models.CharField(default='0000000000' , max_length=18)
-    address = models.CharField(max_length = 150 , default = 'xyz')
-    about = models.TextField(default='None' , max_length=100 , null = True)
+    email = models.EmailField()
+    phone = models.CharField(max_length=18)
+    address = models.CharField(max_length = 150)
+    about = models.TextField(max_length=100 , null = True)
     image = models.ImageField(default='media/default.jpg' , upload_to='profile_image', null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
@@ -111,10 +111,10 @@ class Profile(models.Model):
         return self.user.username
 
 class VendorProfile(models.Model):
-    email = models.EmailField(default='user@gmail.com')
-    phone = models.CharField(default='0000000000' , max_length=18)
-    address = models.CharField(max_length = 150 , default = 'xyz')
-    about = models.TextField(default='None' , max_length=100 , null = True)
+    email = models.EmailField()
+    phone = models.CharField( max_length=18)
+    address = models.CharField(max_length = 150)
+    about = models.TextField(max_length=100 , null = True)
     image = models.ImageField(default='media/default.jpg' , upload_to='profile_image', null=True, blank=True)
     user = models.ForeignKey(User, on_delete = models.CASCADE , null = True , blank = True)
     created_at = models.DateTimeField(auto_now_add = True)
