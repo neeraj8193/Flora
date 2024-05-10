@@ -49,8 +49,8 @@ class FlowersOption(models.Model):
 
 class Address(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE , null = True , blank = True)
-    address_line_1 = models.CharField(max_length = 50)
-    address_line_2 = models.CharField(max_length = 50, blank = True, null = True)
+    address_line_1 = models.CharField(max_length = 225)
+    address_line_2 = models.CharField(max_length = 255, blank = True, null = True)
     landmark = models.CharField(max_length = 20, blank = True, null = True)
     city = models.CharField(max_length = 20)
     state = models.CharField(max_length = 20)
@@ -58,7 +58,14 @@ class Address(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
     
     def __str__(self):
-        return self.user.username
+        return f"""{self.address_line_1},\n
+        {self.address_line_2}\n
+        {self.landmark},\n
+        {self.city},\n
+        {self.state},\n
+        {self.pincode}\n
+        """
+
 
 class Subscription(models.Model):
     sub_type_choices = (
@@ -101,10 +108,10 @@ class Vendor(models.Model):
 
 class Profile(models.Model):
     email = models.EmailField()
-    phone = models.CharField(max_length=18)
+    phone = models.CharField(max_length=10)
     address = models.CharField(max_length = 150)
     about = models.TextField(max_length=100 , null = True)
-    image = models.ImageField(default='media/default.jpg' , upload_to='profile_image', null=True, blank=True)
+    image = models.ImageField(default='media/profile_imagedefault.png' , upload_to='profile_image', null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -112,7 +119,7 @@ class Profile(models.Model):
 
 class VendorProfile(models.Model):
     email = models.EmailField()
-    phone = models.CharField( max_length=18)
+    phone = models.CharField( max_length=10)
     address = models.CharField(max_length = 150)
     about = models.TextField(max_length=100 , null = True)
     image = models.ImageField(default='media/default.jpg' , upload_to='profile_image', null=True, blank=True)

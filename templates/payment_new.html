@@ -108,31 +108,44 @@ Create new subscription
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>
     $(document).ready(function () {
+        var type = parseInt(`{{stype}}`);
         var total = 0;
         var discount = $('#discount').text().replace('%', '');
         var finalprice = 0;
+        
         $('.qty').each(function () {
             var price = $(this).data('price');
             var qty = $(this).val();
             total += price * qty;
         });
-        $('#totalprice').text('Rs ' + total);
         finalprice = total - (total * discount / 100);
+        if (type == 1) {
+            finalprice = finalprice * 12
+            total = total  * 12
+        }else{
+            console.log("monthly")
+        }
+        // update price on qty change
+        $('#totalprice').text('Rs ' + total);
         $('#finalprice').text('Rs ' + finalprice);
         $('#discount').text(discount + '%');
-        // update price on qty change
         $('.qty').on('change', function () {
             var total = 0;
-            var discount = $('#discount').text().replace('%', '');
             var finalprice = 0;
+            var discount = $('#discount').text().replace('%', '');
             $('.qty').each(function () {
                 var price = $(this).data('price');
                 var qty = $(this).val();
                 // alert(qty);
                 total += price * qty;
             });
-            $('#totalprice').text('Rs ' + total);
+            if (type == 1) {
+                total = total  * 12
+            }else{
+                console.log("monthly")
+            }
             finalprice = total - (total * discount / 100);
+            $('#totalprice').text('Rs ' + total);
             $('#finalprice').text('Rs ' + finalprice);
             $('#discount').text(discount + '%');
         });

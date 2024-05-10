@@ -10,8 +10,15 @@
                     <div class="row g-0 border">
                         <div class="col-md-4 gradient-custom text-center text-white"
                             style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                            
+                            {% if profile.image %}
                             <img src="{{ profile.image.url }}" alt="Avatar" class="img-fluid"
-                                style="width: 80px; margin-top: 49%; height: 100px;" />
+                            style="width: 80px; margin-top: 49%; height: 100px;" />
+                            {% else %}
+                            <img src="/media/profile_image/default.png" alt="Avatar" class="img-fluid"
+                            style="width: 80px; margin-top: 49%; height: 100px;" />
+                            {% endif %}
+                                
                             <h5 class="mt-3" style="color: black;">{{user.username}}</h5>
                             <a class="btn btn-primary mt-3 d-md-none" href="{% url 'editprofile' %}">Edit your
                                 profile</a>
@@ -51,6 +58,25 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 mb-4 mb-lg-0">
+                <div class="row">
+                    <h3>Address list</h3>
+                    {% for item in addresses %}
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    {{item}}
+                                </div>
+                                <div class="card-footer">
+                                    <a href="{% url 'address_edit' item.id %}" class="btn btn-primary">Edit</a>
+                                    <a href="{% url 'address_delete' item.id %}" class="btn btn-danger">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                        
                 </div>
             </div>
         </div>

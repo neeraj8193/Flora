@@ -88,6 +88,33 @@ def address_create(request):
         'form':form,
     })
 
+
+def address_delete(request, id):
+    address = Address.objects.get(id=id)
+    address.delete()
+    messages.success(request,"Address deleted successfully!")
+    return redirect('profile')
+
+
+def address_edit(request):
+    id = request.POST.get('id')
+    address = Address.objects.get(id=id)
+    if request.method == 'POST' :
+        form = AddressForm(request.POST, instance=address)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Address updated successfully !")
+            return redirect('profile')
+        else:
+            messages.error(request,"Please fill all the fields correctly!")
+    else:
+        form = AddressForm(instance=address)
+    return render(request,'address_edit.html',{
+        'form':form,
+    })
+
+
+
 @login_required
 def subscription_create(request):
     # check if user has created any address
@@ -179,6 +206,7 @@ def sub_new_payment(request):
         'selected_flowers':added_flowers,
         # 'checkout_id':checkout_id,
         'spk':stripe_public_key,
+        'stype':subscription.sub_type,
     })
 
 from django.http import JsonResponse
@@ -257,11 +285,11 @@ def cancel(request):
 
 @login_required
 def profile(request):
-    try:
-        profile = Profile.objects.get(user=request.user)
-    except Profile.DoesNotExist:
+    if not Profile.objects.filter(user=request.user).exists():
         return redirect('create_profile')
-    return render(request, 'profile.html' , {'profile':profile})
+    profile = Profile.objects.get(user=request.user)
+    addresses = Address.objects.filter(user=request.user)
+    return render(request, 'profile.html' , {'profile':profile, 'addresses':addresses})
 
 @login_required
 def vendorprofile(request):
@@ -345,7 +373,6 @@ def edit_vendorprofile(request):
         "form": form,
     }
     return render(request, "edit_vendorprofile.html", ctx )
-
 
 def add_to_session_cart(request):
     if request.method == 'POST':

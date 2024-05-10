@@ -69,6 +69,8 @@ urlpatterns = [
     path('subscription/payment',sub_new_payment, name='payment_new'),
     path('checkout/session/create',create_checkout_session, name='checkout_session_create'),
     path('address/create',address_create, name='address_create'),
+    path('address/<int:id>/edit',address_edit, name='address_edit'),
+    path('address/<int:id>/delete', address_delete, name="address_delete"),
     path('feedback', feedback_details, name='feedback'),
 
     # success url
