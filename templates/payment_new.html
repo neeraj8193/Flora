@@ -12,20 +12,22 @@ Create new subscription
 
 {% block content %}
 
-<section class="section-content padding-y my-4">
+<section class="section-content mt-4"
+    style="font-family: 'Times New Roman', Times, serif;  background-color: lightseagreen">
     <div class="container">
 
         <div class="row">
-            <main class="col-md-9" style="width: 62%;">
-                <div class="card">
+            <main class="col-md-9" style="width: 64%;">
+                <div class="card shadow">
 
                     <table class="table table-borderless table-shopping-cart">
                         <thead class="text-muted">
                             <tr class="small text-uppercase">
                                 <th scope="col">Product</th>
-                                <th scope="col" width="120">Quantity</th>
-                                <th scope="col" width="120">Price</th>
-                                <th scope="col" class="text-right" width="200"> </th>
+                                <th scope="col" width="220">Product Name</th>
+                                <th scope="col" width="140">Quantity</th>
+                                <th scope="col" width="170">Price</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -38,10 +40,12 @@ Create new subscription
                                             <img src="{{item.flower.image.url}}" class="img-thumbnail"
                                                 style="width: 150px; height: 150px; object-fit: cover;">
                                         </div>
-                                        <figcaption class="info">
-                                            <a href="#" class="title text-dark">{{item.flower.name}} </a>
-                                        </figcaption>
                                     </figure>
+                                </td>
+                                <td>
+                                    <figcaption class="info">
+                                        <a href="#" class="title text-dark">{{item.flower.name}} </a>
+                                    </figcaption>
                                 </td>
                                 <td>
                                     <input type="number" class="form-control qty" value="{{item.quantity}}" min="1"
@@ -49,12 +53,9 @@ Create new subscription
                                 </td>
                                 <td>
                                     <div class="price-wrap">
-                                        <var class="price">Rs {{item.flower.price}}</var>
+                                        <var class="price" style="font-weight: 800;">Rs {{item.flower.price}}</var>
 
                                     </div> <!-- price-wrap .// -->
-                                </td>
-                                <td class="text-right">
-                                    <a href="" class="btn btn-light btn-round"> Remove</a>
                                 </td>
                             </tr>
                             {% empty %}
@@ -65,7 +66,8 @@ Create new subscription
                     </table>
 
                     <div class="card-body border-top">
-                        <a href="{% url 'subscription_create' %}" class="btn btn-primary"> <i class="fa fa-chevron-left"></i>
+                        <a href="{% url 'subscription_create' %}" class="btn btn-primary"> <i
+                                class="fa fa-chevron-left"></i>
                             Go Back From Here </a>
                     </div>
                 </div> <!-- card.// -->
@@ -73,7 +75,7 @@ Create new subscription
             </main> <!-- col.// -->
             <aside class="col-md-3">
                 <!-- card .// -->
-                <div class="card">
+                <div class="card shadow">
                     <div class="card-body">
                         <dl class="dlist-align">
                             <dt>Total price:</dt>
@@ -87,9 +89,9 @@ Create new subscription
                             <dt>Total:</dt>
                             <dd class="text-right  h5"><strong id="finalprice">0.00</strong></dd>
                         </dl>
-                        <hr>
+                        
                         <div class="card-body border-top">
-                            <a href="#" class="btn btn-danger pay">Proceed Payment <i
+                            <a href="#" class="btn btn-success pay">Proceed Payment <i
                                     class="fa fa-chevron-right"></i></a>
                         </div>
 
@@ -112,7 +114,7 @@ Create new subscription
         var total = 0;
         var discount = $('#discount').text().replace('%', '');
         var finalprice = 0;
-        
+
         $('.qty').each(function () {
             var price = $(this).data('price');
             var qty = $(this).val();
@@ -121,8 +123,8 @@ Create new subscription
         finalprice = total - (total * discount / 100);
         if (type == 1) {
             finalprice = finalprice * 12
-            total = total  * 12
-        }else{
+            total = total * 12
+        } else {
             console.log("monthly")
         }
         // update price on qty change
@@ -140,8 +142,8 @@ Create new subscription
                 total += price * qty;
             });
             if (type == 1) {
-                total = total  * 12
-            }else{
+                total = total * 12
+            } else {
                 console.log("monthly")
             }
             finalprice = total - (total * discount / 100);
@@ -177,7 +179,7 @@ Create new subscription
                 sessionId: session.id
             });
         })
-        
+
     });
 </script>
 {% endblock js %}

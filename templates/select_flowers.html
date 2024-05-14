@@ -10,7 +10,7 @@ Take Subscription
     <div class="container my-5" style="font-family: Georgia, 'Times New Roman', Times, serif;">
         <form action="" method="post">
             {% csrf_token %}
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-5">
                 {% for item in flowers %}
                 <div class="col" for="item_{{item.id}}">
                     <div class="card shadow-sm">
@@ -29,7 +29,6 @@ Take Subscription
                             </div>
                             <p class="card-text">{{item.description|truncatewords:15}}</p>
 
-                            
 
                             <label for="item_{{item.id}}" class="w-100 ">
                                 <div class="d-flex align-items-center ">
@@ -53,7 +52,7 @@ Take Subscription
                 {% endfor %}
             </div>
             <div class="row my-3">
-                <button type="submit" class="btn btn-primary">Complete Subscription</button>
+                <button type="submit" class="btn btn-success">Complete Subscription</button>
             </div>
         </form>
     </div>

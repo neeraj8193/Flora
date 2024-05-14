@@ -92,11 +92,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'flora_contact',
         'USER': 'root',
-        'PASSWORD': '9199252671',
+        'PASSWORD': 'ashuabbas@123',
         'HOST': 'localhost',
         'PORT': '3306',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

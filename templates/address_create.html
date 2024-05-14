@@ -7,28 +7,64 @@ Create Address
 
 {% block content %}
 
-<section id="form-section" style="font-family: 'Times New Roman', Times, serif; background-color: lightblue">
+<section id="form-section" style="font-family: 'Times New Roman', Times, serif; background-color: lightsteelblue;">
+    <div class="row vh-100 g-1">
 
-    <div class="container my-4">
-        <div class="row">
-            <div class="col-md-7 mx-auto">
-                <h1 class="text-center mb-5" style="font-family: AUTO; color: white;">
-                    Create Your Address To Proceed Further
-                </h1>
+        <div class="col-lg-5 position-relative d-none d-lg-block">
+            <div class="bg-holder"></div>
+        </div>
 
 
-                <form class="form-content-section" method="post" action="#">
-                    {% csrf_token %}
-                    {{form|crispy}}
+        <div class="col-lg-7">
+            <div class="row align-items-center justify-content-center h-100 g-0 px-4 px-sm-0">
+                <div class="col col-sm-6 col-lg-7 col-xl-8">
 
-                    <div class="justify-content-center d-flex gap-3">
-                        <button type="submit" class="btn btn-primary mt-4">Save the details</button>
+                    <div class="text-center my-4">
+                        <h3 class="fw-bold" style="font-family: 'Times New Roman', Times, serif;">Please Create Your Address First </h3>
                     </div>
-                </form>
+                    <form action="#" method="post" class="card shadow p-3  rounded">
+                    
+                        <div class="card-body">
+                            {% csrf_token %}
+                            {{form|crispy}}
+                    
+                            <button type="submit" class="btn btn-primary btn w-100 mb-2">Save The Details</button>
+                    
+                        </div>
+                    </form>
+        
+                </div>
             </div>
         </div>
+
     </div>
 </section>
 
-
 {% endblock %}
+
+
+
+{% block css %}
+<style>
+    .form-text {
+        font-size: .8rem;
+        display: none;
+    }
+
+    .card {
+        background-color: aqua !important;
+    }
+    .bg-holder {
+            position: absolute;
+            width: 94%;
+            min-height: 87%;
+            top: 12%;
+            left: 7%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-image: url('/static/img/addresspage.avif')
+        }
+</style>
+{% endblock css %}
+
