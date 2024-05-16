@@ -10,12 +10,18 @@ class AddressForm(forms.ModelForm):
 
 
 class ProfileForm(ModelForm):
-     class Meta:
+    class Meta:
         model = Profile
         fields = ['email','phone','address','about','image']
 
 
 class VendorProfileForm(ModelForm):
-     class Meta:
+    class Meta:
         model = VendorProfile
         fields = ['email','phone','address','about','image']
+
+class FlowerForm(ModelForm):
+    class Meta:
+        model = FlowersOption
+        fields = '__all__'
+        exclude = ['vendor']

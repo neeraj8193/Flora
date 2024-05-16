@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import Group, User
 # login
 def customer_login_view(request):
     if request.method == 'POST':
@@ -51,8 +52,14 @@ def vendor_register_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, "account created successfully")
+            user = form.save(commit=False)
+            user.is_active = False
+            user.save()
+            # add to vendor group
+            group = Group.objects.get(name='vendor')
+            user.groups.add(group)
+
+            messages.success(request, "account created successfully, but you need to wait for admin approval")
             return redirect('vlogin')
     return render(request, 'accounts/vendorRegister.html', {'form': form})
 
@@ -74,10 +81,11 @@ def vendor_login_view(request):
                 request, 
                 username=username,
                 password=password)
-            if user is not None:
-                login(request, user)
-                messages.success(request, "login successful")
-                return redirect('home')
+            if user is not None and user.groups.filter(name='vendor').exists():
+            
+                    login(request, user)
+                    messages.success(request, "login successful")
+                    return redirect('home')
             else:
-                messages.error(request, "login failed")
+                messages.error(request, "Invalid login credentials")
     return render(request, 'accounts/vendorLogin.html')

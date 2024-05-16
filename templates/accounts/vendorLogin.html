@@ -94,6 +94,13 @@
     <div class="container-fluid" style="margin-top: 4%;">
 
         <form class="mx-auto mt-2 " action="" method="post">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
             {% csrf_token %}
 
             <a href="#" class="d-flex justify-content-center align-items-center mb-4">
@@ -104,12 +111,12 @@
 
             <div class="mb-3 mt-3">
                 <label for="exampleInputEmail1" class="form-label">User Name</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username"
                     placeholder="Enter the Username">
             </div>
             <div class="mb-2">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter the Password">
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter the Password" name="password">
             </div>
           
 
@@ -117,6 +124,7 @@
             <button type="submit" class="btn btn-primary mt-3 signin"> <a href="{% url 'vregister' %}">Create new
                     account</a></button>
         </form>
+       
     </div>
 </body>
 

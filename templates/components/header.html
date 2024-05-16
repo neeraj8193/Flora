@@ -14,7 +14,13 @@
           <li><a href="{% url 'gallery' %}" style="font-family: Georgia, 'Times New Roman', Times, serif;">Gallery</a></li>
           <li><a href="{% url 'contact' %}" style="font-family: Georgia, 'Times New Roman', Times, serif;">Contact</a></li>
           <li><a href="{% url 'subscription_create' %}" style="font-family: Georgia, 'Times New Roman', Times, serif;">Take a Subscription</a></li>
+          
+          {% if  request.user.groups.all.0.name == 'vendor' %}
+          <li><a href="{% url 'vendorprofile' %}" style="font-family: Georgia, 'Times New Roman', Times, serif;">Vendor Profile</a></li>
+          {% else %}  
           <li><a href="{% url 'profile' %}" style="font-family: Georgia, 'Times New Roman', Times, serif;">Profile</a></li>
+          {% endif %}
+            
         </ul>
       </nav><!-- .navbar -->
 

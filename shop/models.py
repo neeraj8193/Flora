@@ -43,6 +43,7 @@ class FlowersOption(models.Model):
     season_type= models.CharField(max_length=20,choices=season_type)
     maintainance_type = models.CharField(max_length=20,choices=maintainance_type)
     price = models.FloatField()
+    vendor = models.ForeignKey(User, on_delete = models.CASCADE , null = True , blank = True, default=1)
     
     def __str__(self):
         return self.name
@@ -111,7 +112,7 @@ class Profile(models.Model):
     phone = models.CharField(max_length=10)
     address = models.CharField(max_length = 150)
     about = models.TextField(max_length=100 , null = True)
-    image = models.ImageField(default='media/profile_imagedefault.png' , upload_to='profile_image', null=True, blank=True)
+    image = models.ImageField(default='profile_imagedefault.png' , upload_to='profile_image', null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -122,7 +123,7 @@ class VendorProfile(models.Model):
     phone = models.CharField( max_length=10)
     address = models.CharField(max_length = 150)
     about = models.TextField(max_length=100 , null = True)
-    image = models.ImageField(default='media/default.jpg' , upload_to='profile_image', null=True, blank=True)
+    image = models.ImageField(default='default.jpg' , upload_to='profile_image', null=True, blank=True)
     user = models.ForeignKey(User, on_delete = models.CASCADE , null = True , blank = True)
     created_at = models.DateTimeField(auto_now_add = True)
     def __str__(self):

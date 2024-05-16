@@ -6,52 +6,34 @@ Subscription Item list
 {% endblock %}
 
 {% block content %}
-<section style="background-color: #eee;">
-    <div class="text-center container py-5">
-        <h4 class="mt-4 mb-5"><strong>SUBSCRIPTION LIST</strong></h4>
-
-        <div class="row">
-            <div class="col-lg-4 col-md-12 mb-4">
-                <div class="card">
-                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                        data-mdb-ripple-color="light">
-                        <img src="" class="w-100" />
-                    </div>
+<section style="background-color: whitesmoke;">
+    <div class="container my-5" style="font-family: Georgia, 'Times New Roman', Times, serif;">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-5">
+            {% for item in flowers %}
+            <div class="col" for="item_{{item.id}}">
+                <div class="card shadow-sm">
+                    <img class="card-img" src="{{item.flower.image.url }}" alt="Card image cap" style="height: 300px;">
                     <div class="card-body">
-                        <h5 class="card-title mb-3">Pot name</h5>
-                        <button type="button" class="btn btn-sm btn-outline-primary mb-3">
-                            Summer
-                        </button>
-                        <h6 class="mb-3">Rs.699</h6>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-primary">
+                                    {{item.flower.season_type|title}}
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-success">
+                                    {{item.flower.maintainance_type|title}}
+                                </button>
+                            </div>
+                            <small class="text-body-secondary fs-5">Rs: {{item.flower.price|floatformat:2}}</small>
+                        </div>
+                        <p class="card-text">{{item.flower.description|truncatewords:15}}</p>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-4 col-md-12 mb-4">
-                <div class="card">
-                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                        data-mdb-ripple-color="light">
-                        <img src="" class="w-100 height : 300px" />
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title mb-3">Pot name</h5>
-                        <button type="button" class="btn btn-sm btn-outline-primary mb-3">
-                            Summer
-                        </button>
-                        <h6 class="mb-3">Rs.699</h6>
-                    </div>
-                </div>
-            </div>
+            <!-- submit -->
+            {% endfor %}
         </div>
     </div>
+
+
 </section>
 {% endblock content %}
-
-
-{% block css %}
-<style>
-    
-</style>
-{% endblock %}

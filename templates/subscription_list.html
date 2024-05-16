@@ -13,14 +13,14 @@ Subscription List
     <div class="row justify-content-center mb-3">
 
       {% for item in subscriptions %}
-      
+
       <div class="col-md-12 col-xl-10">
         <div class="card shadow-0 border rounded-3">
           <div class="card-body">
             <div class="row">
               <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                 <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                  <img src="" class="w-100" />
+                  <img src="/media/flowers/defaultsub.webp" class="w-100" />
                   <a href="#!">
                     <div class="hover-overlay">
                       <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
@@ -30,19 +30,27 @@ Subscription List
               </div>
               <div class="col-md-6 col-lg-6 col-xl-6">
 
-                <h5 class="mt-2">{{item.image.url}}</h5>
-
-                <p class=" mt-3 mb-md-0">
+                <h5 class="mt-2"></h5>
+                <h3 class="text-center">
+                  Address
+                </h3>
+                <p class=" mt-2 mb-md-0" style="font-size: 1.2rem;">
                   {{item.address}}
                 </p>
 
-                <div class="d-flex flex-row mt-3">
+                <div class="d-flex flex-row mt-5">
                   <button type="button" class="btn btn-sm btn-outline-primary" style="margin-right: 10%;">
-                    Subscription Date : {{item.created_at.date}}
+                    Subscription Start Date : {{item.created_at.date}}
                   </button>
 
+                  {% if item.sub_type == 1 %}
+                  Yearly Subscription
+                  {% else %}
+                  Monthly Subscription
+                  {% endif %}
+
                   <button type="button" class="btn btn-sm btn-outline-danger">
-                    {{item.season_type}}
+                    {{item.expiry_date}}
                   </button>
                 </div>
               </div>

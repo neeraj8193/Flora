@@ -1,9 +1,9 @@
 {% extends 'layout/base.html' %}
 
 {% block Flora %}
-  Vendor Profile
+Vendor Profile
 {% endblock %}
-  
+
 {% block content %}
 <section style="background-color: dodgerblue; font-family: 'Times New Roman', Times, serif;">
   <div class="container py-5">
@@ -13,8 +13,7 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <img src="{{ profile.image.url }}" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 120px;">
+            <img src="{{ profile.image.url }}" alt="avatar" class="rounded-circle img-fluid" style="width: 120px;">
             <h5 class="my-3">{{user.username}}</h5>
             <p><a href="{% url 'editvendorprofile' %}" style="color: blue;">Edit your profile</a></p>
           </div>
@@ -75,7 +74,38 @@
     </div>
 
     <div>
-      <button class="w-100 rounded btn btn-light mb-2"> <a style="color: green;" href="{% url 'admin:index' %}">See Details From Here</a></button>
+      <button class="w-100 rounded btn btn-light mb-2"> <a style="color: green;" href="{% url 'add_flowers' %}">Add
+          Flowers</a></button>
+    </div>
+    <div class="row">
+      {% for item in flowers %}
+      <div class="col-md-3" for="item_{{item.id}}">
+        <div class="card shadow-sm">
+          <img class="card-img" src="{{ item.image.url }}" alt="Card image cap" style="height: 300px;">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-primary">
+                  {{item.season_type|title}}
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-success">
+                  {{item.maintainance_type|title}}
+                </button>
+              </div>
+              <small class="text-body-secondary fs-5">Rs: {{item.price|floatformat:2}}</small>
+            </div>
+            <p class="card-text">{{item.description|truncatewords:15}}</p>
+            <!-- edit and delete button -->
+            <a href="{% url 'edit_flowers' item.id %}" class="btn btn-primary btn-sm">
+              <i class="bi bi-pencil-square"></i>
+            </a>
+            <a href="{% url 'delete_flowers' item.id %}" class="btn btn-danger btn-sm">
+              <i class="bi bi-trash"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
   </div>
 </section>

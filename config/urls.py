@@ -45,11 +45,16 @@ urlpatterns = [
     path('vendorprofile/view', vendorprofile , name='vendorprofile'),
     path('vendorprofile/edit', edit_vendorprofile , name='editvendorprofile'),
     path('vendorprofile/create', create_vendorprofile , name='create_vendorprofile'),
+    # vendor add., edit, delete flowers
+    path('flowers/add', add_flowers , name='add_flowers'),
+    path('flowers/<int:id>/edit', edit_flowers , name='edit_flowers'),
+    path('flowers/<int:id>/delete', delete_flowers , name='delete_flowers'),
 
 
     path('login/customer', customer_login_view, name='clogin'),
     path('register/customer', customer_register_view, name='cregister'),
     path('logout/', logout_view, name='logout'),
+
     path('vendor/login', vendor_login_view, name='vlogin'),
     path('vendor/register', vendor_register_view, name='vregister'),
 
@@ -62,7 +67,7 @@ urlpatterns = [
 
 
 
-    path('subscription/taten',subscription_details, name='subscription_taken'),
+    path('subscription/taken',subscription_details, name='subscription_taken'),
     path('subscription/<int:id>/detail',subscription_item_details, name='subscription_details'),
     path('subscription/create',subscription_create, name='subscription_create'),
     path('select/flowers',select_flowers, name='select_flowers'),

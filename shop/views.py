@@ -9,7 +9,7 @@ from django.shortcuts import render , redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import datetime
-from .forms import AddressForm , ProfileForm , VendorProfileForm
+from .forms import AddressForm , ProfileForm , VendorProfileForm, FlowerForm
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import dotenv
@@ -158,6 +158,9 @@ def subscription_create(request):
 def subscription_details(request):
     # load uses subscriptions, that have completed payment
     subscriptions = Subscription.objects.filter(user=request.user, is_payment_done=True)
+    for sub in subscriptions:
+        sub.selected_flowers = SelectedFlowers.objects.filter(subscription_id=sub.id)
+
     return render(request,'subscription_list.html', {
         'subscriptions':subscriptions,
     })
@@ -165,10 +168,18 @@ def subscription_details(request):
 
 def subscription_item_details(request, id):
     subscription = Subscription.objects.get(id=id)
-    flowers = SelectedFlowers.objects.filter(subscription_id=id)
+    print(f'subscription: {subscription}')
+    select_flowers = SelectedFlowers.objects.filter(subscription=subscription)
+    flowers = FlowersOption.objects.all()
+    for flower in flowers:
+        flower.selected = False
+        for sf in select_flowers:
+            if flower.id == sf.flower.id:
+                flower.selected = True
+    print(f'selected_flowers: {select_flowers}')
     return render(request,'subscription_list_items.html', {
         'subscription':subscription,
-        'flowers':flowers,
+        'flowers':select_flowers,
     })
 
 
@@ -190,6 +201,7 @@ def select_flowers(request):
     return render(request,'select_flowers.html',{
         'flowers':page_obj,
     })
+
 
 @login_required
 @csrf_exempt
@@ -269,7 +281,6 @@ def success(request):
     subscription.price = request.session.get('total_price')
     subscription.save()
     # clear selected flowers
-    SelectedFlowers.objects.filter(subscription_id=sub_id).delete()
     # clear subscription id from session
     del request.session['subscription_id']
     del request.session['total_price']
@@ -297,7 +308,9 @@ def vendorprofile(request):
         profile = VendorProfile.objects.get(user=request.user)
     except VendorProfile.DoesNotExist:
         return redirect('create_vendorprofile')
-    return render(request, 'vendorprofile.html' , {'profile':profile})
+    flowers = FlowersOption.objects.filter(vendor=request.user)
+    production = SelectedFlowers.objects.filter(flower__vendor=request.user)
+    return render(request, 'vendorprofile.html' , {'profile':profile, 'flowers':flowers, 'production':production})
 
 def create_profile(request):
     if request.method == 'POST':
@@ -396,3 +409,44 @@ def clear_session_cart(request):
         del request.session['flowers']
     return HttpResponse("Cleared")
 
+# vendor add., edit, delete flowers
+def add_flowers(request):
+    if request.user not in User.objects.filter(groups__name='vendor'):
+        messages.error(request, "You are not authorized to view this page!")
+        return redirect('home')
+    form = FlowerForm()
+    if request.method == 'POST':
+        form = FlowerForm(request.POST,request.FILES)
+        if form.is_valid():
+            flower = form.save(commit=False)
+            flower.vendor = request.user
+            flower.save()
+            messages.success(request, "Flower added successfully!")
+            return redirect('vendorprofile')
+        else:
+            messages.error(request, "Please fill all the fields correctly!")
+    return render(request, 'add_flowers.html', {
+        'form': form,
+    })
+
+def edit_flowers(request, id):
+    flower = FlowersOption.objects.get(id=id)
+    form = FlowerForm(instance=flower)
+    if request.method == 'POST':
+        form = FlowerForm(request.POST, request.FILES,  instance=flower)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Flower updated successfully!")
+            return redirect('vendorprofile')
+        else:
+            messages.error(request, "Please fill all the fields correctly!")
+    return render(request, 'edit_flowers.html', {
+        'form': form,
+    })
+
+def delete_flowers(request, id):
+    flower = FlowersOption.objects.get(id=id)
+    flower.delete()
+    messages.success(request, "Flower deleted successfully!")
+    # back to vendor profile
+    return redirect('vendorprofile')

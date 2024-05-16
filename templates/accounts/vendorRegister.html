@@ -20,11 +20,13 @@
             margin-top: 7%;
             color: #fff;
         }
-        .form-text{
+
+        .form-text {
             font-size: .8rem;
             display: none;
         }
-        .card{
+
+        .card {
             background-color: #bbbabea4 !important;
         }
     </style>
@@ -35,10 +37,10 @@
         <div class="row conspace background-space align-items-center justify-content-center h-100 g-0 px-4 px-sm-0">
 
             <div class="col col-sm-6 col-lg-4 col-xl-6 ">
-    
-                
-                <form action="#" method="post" class="card">
-                    
+
+
+                <form method="post" class="card">
+
                     <div class="text-center my-4">
                         <h3 class="fw-bold">Vendor Sign Up</h3>
                     </div>
@@ -48,16 +50,17 @@
                         {{form|crispy}}
 
                         <button type="submit" class="btn btn-success btn w-100 mb-2">Register</button>
-    
+
                         <div class="text-center mb-4">
                             <small>Already have an account? <a href="{% url 'vlogin' %}"
                                     class="fw-bold ms-1">Login</a></small>
                         </div>
-    
+
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </body>
+
 </html>
