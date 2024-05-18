@@ -94,6 +94,8 @@
     <div class="container-fluid" style="margin-top: 4%;">
 
         <form class="mx-auto mt-2 " action="" method="post">
+
+
             {% if messages %}
             {% for message in messages %}
             <div class="alert alert-danger" role="alert">
@@ -108,7 +110,7 @@
             </a>
 
             <h4 class="text-center">Login</h4>
-
+                {% csrf_token %}
             <div class="mb-3 mt-3">
                 <label for="exampleInputEmail1" class="form-label">User Name</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username"

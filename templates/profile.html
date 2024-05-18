@@ -2,96 +2,114 @@
 
 {% block content %}
 
-<section class="vh-100" style="background-color: #f4f5f7;">
+
+
+<section style="background-color: dodgerblue; font-family: 'Times New Roman', Times, serif;">
     <div class="container py-5">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-12 col-lg-6 mb-4 mb-lg-0">
-                <div class="card mb-3" style="border-radius: .5rem;">
-                    <div class="row g-0 border">
-                        <div class="col-md-4 gradient-custom text-center text-white"
-                            style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                            
-                            {% if profile.image %}
-                            <img src="{{ profile.image.url }}" alt="Avatar" class="img-fluid"
-                            style="width: 80px; margin-top: 49%; height: 100px;" />
-                            {% else %}
-                            <img src="/profile_image/default.png" alt="Avatar" class="img-fluid"
-                            style="width: 80px; margin-top: 49%; height: 100px;" />
-                            {% endif %}
-                                
-                            <h5 class="mt-3" style="color: black;">{{user.username}}</h5>
-                            <a class="btn btn-primary mt-3 d-md-none" href="{% url 'editprofile' %}">Edit your
-                                profile</a>
-                            <a class="btn btn-primary mt-3 d-md-none" href="{% url 'subscription_taken' %}">Your
-                                Subscriptions</a>
+
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        {% if profile.image %}
+                        <img src="{{ profile.image.url }}" alt="avatar" class="rounded-circle img-fluid"
+                            style="width:162px;">
+                        {% else %}
+                        <img src="/profile_image/default.png" alt="avatar" class="rounded-circle img-fluid"
+                            style="width: 120px;">
+                        {% endif %}
+                        <h5 class="my-3">Username : {{user.username}}</h5>
+                        <p><a href="{% url 'editprofile' %}" style="color: blue;">Edit your profile</a></p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Name</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{user.username}}</p>
+                            </div>
                         </div>
-                        <div class="col-md-8">
-                            <div class="card-body p-4 border-left">
-                                <h6>Information</h6>
-                                <hr class="mt-0 mb-4">
-                                <div class="mb-3">
-                                    <h6>About</h6>
-                                    <p class="text-muted">{{profile.about}}</p>
-                                </div>
-                                <div class="mb-3">
-                                    <h6>Address</h6>
-                                    <p class="text-muted">{{profile.address}}</p>
-                                </div>
-                                <div class="mb-3">
-                                    <h6>Email</h6>
-                                    <p class="text-muted">{{profile.email}}</p>
-                                </div>
-                                <div class="mb-3">
-                                    <h6>Phone</h6>
-                                    <p class="text-muted">{{profile.phone}}</p>
-                                </div>
-                                <div class="row d-none d-md-flex justify-content-end">
-                                    <div class="col">
-                                        <a class="btn btn-primary mt-4" href="{% url 'editprofile' %}">Edit your
-                                            profile</a>
-                                    </div>
-                                    <div class="col">
-                                        <a class="btn btn-primary mt-4" href="{% url 'subscription_taken' %}">Your
-                                            Subscriptions</a>
-                                    </div>
-                                </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Email</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{profile.email}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Phone</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">+91 {{profile.phone}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Address</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{profile.address}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">About</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{profile.about}}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-lg-6 mb-4 mb-lg-0">
-                <div class="row">
-                    <h3>Address list</h3>
-                    {% for item in addresses %}
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    {{item}}
-                                </div>
-                                <div class="card-footer">
-                                    <a href="{% url 'address_edit' item.id %}" class="btn btn-primary">Edit</a>
-                                    <a href="{% url 'address_delete' item.id %}" class="btn btn-danger">Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                        
-                </div>
+
             </div>
         </div>
+
+        <div>
+            <button class="w-100 rounded btn btn-light mb-2"> <a style="color: darkgreen;"
+                    href="{% url 'subscription_taken' %}">View Your Subscriptions Here </a></button>
+        </div>
+
+
+        <div class="row">
+            <h3 style="font-family: 'Times New Roman', Times, serif;" class="text-center mt-4 fw-bold mb-4">ADDRESS LIST</h3>
+            {% for item in addresses %}
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        {{item}}
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'address_edit' item.id %}" class="btn btn-primary"
+                            style="width: 40%; margin-right: 7%;">Edit</a>
+                        <a href="{% url 'address_delete' item.id %}" class="btn btn-danger" style="width: 40%;"> Delete
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div>
+            <button class="w-100 rounded btn btn-light mb-2 mt-4"> <a style="color: darkgreen;"
+                    href="{% url 'address_create' %}">Add Address</a></button>
+        </div>
+    </div>
+
+    </div>
     </div>
 </section>
 
 {% endblock content %}
-
-{% block css %}
-<style>
-    .gradient-custom {
-        background: #f6d365;
-        background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
-        background: linear-gradient(to right bottom, #ffffff , #ffffff)
-    }
-</style>
-
-{% endblock %}

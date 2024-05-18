@@ -23,9 +23,9 @@ Subscription Item list
                                     {{item.flower.maintainance_type|title}}
                                 </button>
                             </div>
-                            <small class="text-body-secondary fs-5">Rs: {{item.flower.price|floatformat:2}}</small>
                         </div>
-                        <p class="card-text">{{item.flower.description|truncatewords:15}}</p>
+                        <p class="card-text">{{item.flower.description|truncatewords:7}}</p>
+                        <small class="text-body-secondary fs-5">Rs: {{item.flower.price|floatformat:2}}</small>
                     </div>
                 </div>
             </div>

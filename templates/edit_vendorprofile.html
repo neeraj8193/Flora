@@ -1,23 +1,66 @@
 {% extends 'layout/base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
+{% block Flora %}
+Edit Profile
+{% endblock %}
+
 {% block content %}
-<section class="my-4" style="font-family: Georgia, 'Times New Roman', Times, serif;">
-    <div class="container">
-        <div class="row justify-content-center" style="background-color: darkcyan;">
-            <div class="col-6">
-                <h2 class="my-5"
-                    style="font-family: 'Times New Roman', Times, serif; text-align: center; color: whitesmoke;">Hello
-                    Vendor , Edit Your Profile From Here</h2>
-                <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-success">Submit</button>
+<section id="form-section" class="my-4" style="font-family: 'Times New Roman', Times, serif; background-color: lightsteelblue;">
+    <div class="row g-1">
+
+        <div class="col-lg-5 position-relative d-none d-lg-block">
+            <div class="bg-holder"></div>
+        </div>
+
+
+        <div class="col-lg-7">
+            <div class="row align-items-center justify-content-center h-100 g-0 px-4 px-sm-0">
+                <div class="col col-sm-6 col-lg-7 col-xl-8">
+
+                    <div class="text-center my-4">
+                        <h3 class="fw-bold" style="font-family: 'Times New Roman', Times, serif;">Heyy , Edit Your Profile here</h3>
                     </div>
-                </form>
-                <br>
+                    <form action="#" method="post" class="card shadow p-3  rounded">
+                    
+                        <div class="card-body">
+                            {% csrf_token %}
+                            {{form|crispy}}
+                    
+                            <button type="submit" class="btn btn-primary btn w-100 mb-2">Save The Details</button>
+                    
+                        </div>
+                    </form>
+        
+                </div>
             </div>
         </div>
+
     </div>
 </section>
 {% endblock content %}
+
+
+{% block css %}
+<style>
+    .form-text {
+        font-size: .8rem;
+        display: none;
+    }
+
+    .card {
+        background-color: whitesmoke !important;
+    }
+    .bg-holder {
+            position: absolute;
+            width: 94%;
+            min-height: 80%;
+            top: 15%;
+            left: 7%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-image: url('/static/img/vendor2.jpg')
+        }
+</style>
+{% endblock css %}

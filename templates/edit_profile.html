@@ -2,10 +2,10 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <section class="my-4" style="font-family: Georgia, 'Times New Roman', Times, serif;">
-    <div class="container">
-        <div class="row justify-content-center" style="background-color: lightseagreen;">
-            <div class="col-6">
-                <h2 class="my-5" style="font-family: 'Times New Roman', Times, serif; text-align: center; color: whitesmoke;">Edit Your Profile
+    <div class="container ground">
+        <div class="row" style="margin-right: 47%; margin-left: 1%;">
+            <div class="col-11 mt-4 mb-4" style="background-color: whitesmoke; padding: 4%;">
+                <h2 style="font-family: 'Times New Roman', Times, serif; text-align: center; color: darkblue;">Edit Your Profile
                 </h2>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -20,3 +20,15 @@
     </div>
 </section>
 {% endblock content %}
+
+
+{% block css %}
+    <style>
+        .ground{
+            background-image: url('/static/img/feedback1.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+{% endblock css %}
